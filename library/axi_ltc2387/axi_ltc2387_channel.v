@@ -93,11 +93,13 @@ module axi_ltc2387_channel #(
   wire           [15:0] adc_iqcor_coeff_2_s;
   wire           [ 3:0] adc_pnseq_sel_s;
   wire           [ 3:0] adc_data_sel_s;
+  reg                   adc_pn_err;
   wire                  adc_pn_err_s;
-  wire                  adc_pn_oos_s;
 
   wire           [15:0] expected_pattern;
   wire    [ADC_RES-1:0] test_pattern;
+
+  assign adc_pn_err_s = adc_pn_err;
 
   // expected pattern
 
@@ -114,16 +116,13 @@ module axi_ltc2387_channel #(
     end
   endgenerate
 
-  // pn oos & pn err
-
-  ad_pnmon #(.DATA_WIDTH(ADC_RES)) i_pnmon (
-    .adc_clk (adc_clk),
-    .adc_valid_in (adc_valid_in),
-    .adc_data_in (adc_data),
-    .adc_data_pn (test_pattern),
-    .adc_pattern_has_zero (1'b0),
-    .adc_pn_oos (adc_pn_oos_s),
-    .adc_pn_err (adc_pn_err_s));
+  always @ (posedge adc_clk) begin
+    if (test_pattern == adc_data) begin
+      adc_pn_err <= 1'b0;
+    end else begin
+      adc_pn_err <= 1'b1;
+    end
+  end
 
   // min DMA bus width according to ADC_RES
 
@@ -175,7 +174,7 @@ module axi_ltc2387_channel #(
     .adc_pnseq_sel (adc_pnseq_sel_s),
     .adc_data_sel (),
     .adc_pn_err (adc_pn_err_s),
-    .adc_pn_oos (adc_pn_oos_s),
+    .adc_pn_oos (1'b0),
     .adc_or (1'b0),
     .up_adc_pn_err (up_adc_pn_err),
     .up_adc_pn_oos (up_adc_pn_oos),

@@ -22,9 +22,16 @@ set_property -dict {PACKAGE_PIN G19 IOSTANDARD LVCMOS25} [get_ports twolanes_cnt
 
 create_clock -period 8.333 -name dco [get_ports dco_p]
 create_clock -period 8.333 -name ref_clk [get_ports ref_clk_p]
+create_clock -period 8.333 -name virtual_clk -waveform {0.225 4.3915}
 
-set_multicycle_path 2 -setup -end -from dco -to ref_clk_p
-set_multicycle_path 1 -hold -start -from dco -to ref_clk_p
+set_clock_latency -source -early 0.3 [get_clocks ref_clk]
+set_clock_latency -source -late 1.5 [get_clocks ref_clk]
+
+set_output_delay -clock dco -max 1.4 [get_ports cnv];
+set_output_delay -clock dco -min 0.3 [get_ports cnv];
+
+set_multicycle_path 2 -setup -end -from dco -to ref_clk
+set_multicycle_path 1 -hold -start -from dco -to ref_clk
 
 set_input_delay -clock dco -max 0.2 [get_ports da_p];
 set_input_delay -clock dco -min -0.2 [get_ports da_p];
