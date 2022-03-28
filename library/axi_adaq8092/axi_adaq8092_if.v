@@ -194,7 +194,8 @@ module axi_adaq8092_if #(
           .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
           .IODELAY_CTRL (0),
           .IODELAY_GROUP (IO_DELAY_GROUP),
-          .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY))
+          .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY),
+          .IDDR_CLK_EDGE("OPPOSITE_EDGE"))
         i_adc_data (
           .rx_clk (adc_clk),
           .rx_data_in_p (lvds_adc_data_p[l_inst]),
@@ -220,7 +221,8 @@ module axi_adaq8092_if #(
           .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
           .IODELAY_CTRL (0),
           .IODELAY_GROUP (IO_DELAY_GROUP),
-          .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY))
+          .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY),
+          .IDDR_CLK_EDGE("OPPOSITE_EDGE"))
         i_adc_data (
           .rx_clk (adc_clk),
           .rx_data_in_p (cmos_adc_data[l_inst]),
@@ -249,7 +251,8 @@ module axi_adaq8092_if #(
     .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
     .IODELAY_CTRL (1),
     .IODELAY_GROUP (IO_DELAY_GROUP),
-    .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY))
+    .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY),
+    .IDDR_CLK_EDGE("OPPOSITE_EDGE"))
     i_adc_or_lvds (
     .rx_clk (adc_clk),
     .rx_data_in_p (lvds_adc_or_p),
@@ -271,7 +274,8 @@ module axi_adaq8092_if #(
     .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
     .IODELAY_CTRL (1),
     .IODELAY_GROUP (IO_DELAY_GROUP),
-    .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY))
+    .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY),
+    .IDDR_CLK_EDGE("OPPOSITE_EDGE"))
     i_adc_or_cmos_1 (
     .rx_clk (adc_clk),
     .rx_data_in_p (cmos_adc_data_or_1),
@@ -290,7 +294,8 @@ module axi_adaq8092_if #(
     .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
     .IODELAY_CTRL (1),
     .IODELAY_GROUP (IO_DELAY_GROUP),
-    .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY))
+    .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY),
+    .IDDR_CLK_EDGE("OPPOSITE_EDGE"))
     i_adc_or_cmos_2 (
     .rx_clk (adc_clk),
     .rx_data_in_p (cmos_adc_data_or_2),
