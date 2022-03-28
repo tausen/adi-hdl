@@ -4,7 +4,7 @@ source $ad_hdl_dir/projects/scripts/adi_project_xilinx.tcl
 source $ad_hdl_dir/projects/scripts/adi_board.tcl
 
 ##--------------------------------------------------------------
-# IMPORTANT: Set AD7616 operation and interface mode
+# IMPORTANT: Set ADAQ8092 operation and interface mode
 #
 # The get_env_param procedure retrieves parameter value from the environment if exists,
 # other case returns the default value specified in its second parameter field.
@@ -12,9 +12,9 @@ source $ad_hdl_dir/projects/scripts/adi_board.tcl
 #   How to use over-writable parameters from the environment:
 #
 #    e.g.
-#      make OUTPUT_MODE=DDR_LVDS
+#      make OUTPUT_MODE=LVDS
 #
-#    OUTPUT_MODE  - Defines the output mode DDR_LVDS, DDR_CMOS or SDR_CMOS.
+#    OUTPUT_MODE  - Defines the output mode LVDS or CMOS.
 #
 # NOTE : This switch is a 'hardware' switch. Please reimplenent the
 # design if the variable has been changed.
@@ -22,9 +22,9 @@ source $ad_hdl_dir/projects/scripts/adi_board.tcl
 ##--------------------------------------------------------------
 
 if {[info exists ::env(OUTPUT_MODE)]} {
-  set S_OUTPUT_MODE [get_env_param OUTPUT_MODE DDR_LVDS]
+  set S_OUTPUT_MODE [get_env_param OUTPUT_MODE LVDS]
 } elseif {![info exists OUTPUT_MODE]} {
-  set S_OUTPUT_MODE DDR_LVDS
+  set S_OUTPUT_MODE LVDS
 }
 
 adi_project adaq8092_fmc_zed 0 [list \
@@ -38,20 +38,15 @@ adi_project_files adaq8092_fmc_zed [list \
 
 
 switch $S_OUTPUT_MODE {
-  DDR_LVDS {
+  LVDS {
     adi_project_files adaq8092_fmc_zed [list \
-      "system_top_ddr_lvds.v" \
-      "ddr_lvds_constr.xdc"]
+      "system_top_lvds.v" \
+      "lvds_constr.xdc"]
   }
-  DDR_CMOS {
+  CMOS {
     adi_project_files adaq8092_fmc_zed [list \
-      "system_top_ddr_cmos.v" \
-      "ddr_cmos_constr.xdc"]
-  }
-  SDR_CMOS {
-    adi_project_files adaq8092_fmc_zed [list \
-      "system_top_sdr_cmos.v" \
-      "sdr_cmos_constr.xdc"]
+      "system_top_cmos.v" \
+      "cmos_constr.xdc"]
   }
 }
 

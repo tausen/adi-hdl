@@ -44,16 +44,15 @@ set_property driver_value 0 [ipx::get_ports *adc* -of_objects [ipx::current_core
 
 set_property -dict [list \
   value_validation_type pairs \
-  value_validation_pairs {DDR_LVDS 0 DDR_CMOS 1 SDR_CMOS 2} \
+  value_validation_pairs {LVDS 0 CMOS 1 } \
 ] [ipx::get_user_parameters OUTPUT_MODE -of_objects [ipx::current_core]]
 
 
 set_property enablement_dependency { $OUTPUT_MODE == 0 } \
-  [ipx::get_ports *ddr_lvds* -of_objects [ipx::current_core]]
+  [ipx::get_ports *lvds* -of_objects [ipx::current_core]]
 set_property enablement_dependency { $OUTPUT_MODE == 1 } \
-  [ipx::get_ports *ddr_cmos* -of_objects [ipx::current_core]]
-set_property enablement_dependency { $OUTPUT_MODE == 2 } \
-  [ipx::get_ports *sdr_cmos* -of_objects [ipx::current_core]]
+  [ipx::get_ports *cmos* -of_objects [ipx::current_core]]
+
 
 set_property enablement_tcl_expr {$OUTPUT_MODE == 0} \
   [ipx::get_user_parameters POLARITY_MASK -of_objects [ipx::current_core]]

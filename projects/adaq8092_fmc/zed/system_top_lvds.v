@@ -95,25 +95,23 @@ module system_top (
 
   input                   otg_vbusoc,
 
+// adc interface 
+
   input                   adc_clk_in_n,
   input                   adc_clk_in_p,
-  
   input       [6:0]      adc_data_in1_p,
   input       [6:0]      adc_data_in1_n,
   input       [6:0]      adc_data_in2_p,
   input       [6:0]      adc_data_in2_n,
-  
-  
-  
   input                   adc_data_or_p,
   input                   adc_data_or_n,
   input                   adc_par_ser,
-  
-  
   output                  adc_pd1,
   output                  adc_pd2,
   output                  en_1p8,
- 
+  
+ //spi interface
+
   output                  spi_csn,
   output                  spi_clk,
   output                  spi_mosi,

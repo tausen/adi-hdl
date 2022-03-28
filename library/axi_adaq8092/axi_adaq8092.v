@@ -52,21 +52,18 @@ module axi_adaq8092 #(
   input                   adc_clk_in_p,
   input                   adc_clk_in_n,
 
-  input       [6:0]       ddr_cmos_adc_data_in1,
-  input       [6:0]       ddr_cmos_adc_data_in2,
-  input                   ddr_cmos_adc_or_in,
+  
+  input       [ 6:0]      lvds_adc_data_in1_p,
+  input       [ 6:0]      lvds_adc_data_in1_n,
+  input       [ 6:0]      lvds_adc_data_in2_p,
+  input       [ 6:0]      lvds_adc_data_in2_n,
+  input                   lvds_adc_or_in_p,
+  input                   lvds_adc_or_in_n,
 
-  input       [ 6:0]      ddr_lvds_adc_data_in1_p,
-  input       [ 6:0]      ddr_lvds_adc_data_in1_n,
-  input       [ 6:0]      ddr_lvds_adc_data_in2_p,
-  input       [ 6:0]      ddr_lvds_adc_data_in2_n,
-  input                   ddr_lvds_adc_or_in_p,
-  input                   ddr_lvds_adc_or_in_n,
-
-  input       [13:0]      sdr_cmos_adc_data_in1,
-  input       [13:0]      sdr_cmos_adc_data_in2,
-  input                   sdr_cmos_adc_or_in_1,
-  input                   sdr_cmos_adc_or_in_2,
+  input       [13:0]      cmos_adc_data_in1,
+  input       [13:0]      cmos_adc_data_in2,
+  input                   cmos_adc_or_in_1,
+  input                   cmos_adc_or_in_2,
 
 
 
@@ -113,6 +110,11 @@ module axi_adaq8092 #(
   input                   s_axi_rready,
   input       [ 2:0]      s_axi_awprot,
   input       [ 2:0]      s_axi_arprot);
+  
+  
+  // configuration settings
+  
+  localparam CONFIG = (OUTPUT_MODE * 128);
 
 
   // internal registers
@@ -150,9 +152,12 @@ module axi_adaq8092 #(
   wire    [13:0]  adc_decoded_data_s_2;
   wire    [27:0]  adc_part_decoded_data_s;
   wire    [7:0]   adc_custom_control_s;
+  wire            sdr_or_ddr_s;
 
   // signal name changes
 
+ 
+  
   assign up_clk = s_axi_aclk;
   assign up_rstn = s_axi_aresetn;
   assign adc_valid = 1'b1;
@@ -246,15 +251,14 @@ module axi_adaq8092 #(
   i_if (
     .adc_clk_in_p (adc_clk_in_p),
     .adc_clk_in_n (adc_clk_in_n),
-    .ddr_cmos_adc_data({ddr_cmos_adc_data_in2,ddr_cmos_adc_data_in1}),
-    .ddr_cmos_adc_data_or(ddr_cmos_adc_or_in),
-    .ddr_lvds_adc_data_p({ddr_lvds_adc_data_in2_p,ddr_lvds_adc_data_in1_p}),
-    .ddr_lvds_adc_data_n({ddr_lvds_adc_data_in2_n,ddr_lvds_adc_data_in1_n}),
-    .ddr_lvds_adc_or_p(ddr_lvds_adc_or_in_p),
-    .ddr_lvds_adc_or_n(ddr_lvds_adc_or_in_n),
-    .sdr_cmos_adc_data({sdr_cmos_adc_data_in2,sdr_cmos_adc_data_in1}),
-    .sdr_cmos_adc_data_or_1(sdr_cmos_adc_or_in_1),
-    .sdr_cmos_adc_data_or_2(sdr_cmos_adc_or_in_2),
+    .lvds_adc_data_p({lvds_adc_data_in2_p,lvds_adc_data_in1_p}),
+    .lvds_adc_data_n({lvds_adc_data_in2_n,lvds_adc_data_in1_n}),
+    .lvds_adc_or_p(lvds_adc_or_in_p),
+    .lvds_adc_or_n(lvds_adc_or_in_n),
+    .cmos_adc_data({cmos_adc_data_in2,cmos_adc_data_in1}),
+    .cmos_adc_data_or_1(cmos_adc_or_in_1),
+    .cmos_adc_data_or_2(cmos_adc_or_in_2),
+    .sdr_or_ddr(sdr_or_ddr_s),
     .adc_clk (adc_clk),
     .adc_data(adc_data_s),
     .adc_or(adc_or_s),
@@ -295,7 +299,7 @@ module axi_adaq8092 #(
     .FPGA_FAMILY (FPGA_FAMILY),
     .SPEED_GRADE (SPEED_GRADE),
     .DEV_PACKAGE (DEV_PACKAGE),
-    .CONFIG (0),
+    .CONFIG (CONFIG),
     .COMMON_ID (6'h00),
     .DRP_DISABLE (6'h00),
     .USERPORTS_DISABLE (0),
@@ -306,6 +310,7 @@ module axi_adaq8092 #(
     .adc_clk (adc_clk),
     .adc_rst (adc_rst),
     .adc_custom_control(adc_custom_control_s),
+    .adc_sdr_ddr_n(sdr_or_ddr_s),
     .adc_r1_mode (),
     .adc_ddr_edgesel (),
     .adc_pin_mode (),
