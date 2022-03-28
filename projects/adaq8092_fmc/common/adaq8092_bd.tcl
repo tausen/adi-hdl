@@ -12,7 +12,7 @@ puts "build parameters: OUTPUT_MODE: $OUTPUT_MODE"
 
  switch $OUTPUT_MODE {
    
-  DDR_LVDS {
+  LVDS {
   
    create_bd_port -dir I adc_data_or_p
    create_bd_port -dir I adc_data_or_n
@@ -23,15 +23,7 @@ puts "build parameters: OUTPUT_MODE: $OUTPUT_MODE"
    
   }
 
-  DDR_CMOS {
-
-   create_bd_port -dir I adc_data_or
-   create_bd_port -dir I -from 6 -to 0 adc_data_in1
-   create_bd_port -dir I -from 6 -to 0 adc_data_in2
-
-  }
-
-  SDR_CMOS {
+  CMOS {
 
     create_bd_port -dir I adc_data_or_1
     create_bd_port -dir I adc_data_or_2
@@ -77,35 +69,26 @@ puts "build parameters: OUTPUT_MODE: $OUTPUT_MODE"
 
  switch $OUTPUT_MODE {
    
-  DDR_LVDS {
+  LVDS {
 
    ad_ip_parameter axi_adaq8092  CONFIG.POLARITY_MASK 28'hfffffff
    ad_ip_parameter axi_adaq8092  CONFIG.OUTPUT_MODE 0
-   ad_connect     adc_data_in1_p     axi_adaq8092/ddr_lvds_adc_data_in1_p
-   ad_connect     adc_data_in1_n     axi_adaq8092/ddr_lvds_adc_data_in1_n
-   ad_connect     adc_data_in2_p     axi_adaq8092/ddr_lvds_adc_data_in2_p
-   ad_connect     adc_data_in2_n     axi_adaq8092/ddr_lvds_adc_data_in2_n
-   ad_connect     adc_data_or_p      axi_adaq8092/ddr_lvds_adc_or_in_p
-   ad_connect     adc_data_or_n      axi_adaq8092/ddr_lvds_adc_or_in_n 
+   ad_connect     adc_data_in1_p     axi_adaq8092/lvds_adc_data_in1_p
+   ad_connect     adc_data_in1_n     axi_adaq8092/lvds_adc_data_in1_n
+   ad_connect     adc_data_in2_p     axi_adaq8092/lvds_adc_data_in2_p
+   ad_connect     adc_data_in2_n     axi_adaq8092/lvds_adc_data_in2_n
+   ad_connect     adc_data_or_p      axi_adaq8092/lvds_adc_or_in_p
+   ad_connect     adc_data_or_n      axi_adaq8092/lvds_adc_or_in_n 
 
   }
 
-  DDR_CMOS {
+  CMOS {
 
    ad_ip_parameter axi_adaq8092  CONFIG.OUTPUT_MODE 1
-   ad_connect    adc_data_in1         axi_adaq8092/ddr_cmos_adc_data_in1
-   ad_connect    adc_data_in2         axi_adaq8092/ddr_cmos_adc_data_in2
-   ad_connect    adc_data_or          axi_adaq8092/ddr_cmos_adc_or_in
-
-  }
-
-  SDR_CMOS {
-
-   ad_ip_parameter axi_adaq8092  CONFIG.OUTPUT_MODE 2
-   ad_connect    adc_data_in1         axi_adaq8092/sdr_cmos_adc_data_in1
-   ad_connect    adc_data_in2         axi_adaq8092/sdr_cmos_adc_data_in2
-   ad_connect    adc_data_or_1        axi_adaq8092/sdr_cmos_adc_or_in_1
-   ad_connect    adc_data_or_2        axi_adaq8092/sdr_cmos_adc_or_in_2
+   ad_connect    adc_data_in1         axi_adaq8092/cmos_adc_data_in1
+   ad_connect    adc_data_in2         axi_adaq8092/cmos_adc_data_in2
+   ad_connect    adc_data_or_1        axi_adaq8092/cmos_adc_or_in_1
+   ad_connect    adc_data_or_2        axi_adaq8092/cmos_adc_or_in_2
 
   }
   
