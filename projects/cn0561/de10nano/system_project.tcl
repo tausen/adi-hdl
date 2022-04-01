@@ -16,16 +16,16 @@ set_global_assignment -name MESSAGE_DISABLE 15003
 
 # files
 
-# SPI interface for ad7768-1
+# SPI interface for ad7134
 
 set_location_assignment PIN_AH12 -to cn0561_spi_sclk      ; ##   Arduino_IO13
-set_location_assignment PIN_AH11 -to cn0561_spi_miso      ; ##   Arduino_IO12
-set_location_assignment PIN_AG16 -to cn0561_spi_mosi      ; ##   Arduino_IO11
+set_location_assignment PIN_AH11 -to cn0561_spi_sdi       ; ##   Arduino_IO12
+set_location_assignment PIN_AG16 -to cn0561_spi_sdo       ; ##   Arduino_IO11
 set_location_assignment PIN_AF15 -to cn0561_spi_cs        ; ##   Arduino_IO10
 
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_spi_sclk
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_spi_miso
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_spi_mosi
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_spi_sdi
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_spi_sdo
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_spi_cs
 
 # I2C
@@ -38,28 +38,24 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to i2c_sda
 
 # reset and GPIO signals
 
-set_location_assignment PIN_AE15 -to cn0561_shutdown      ; ##   Arduino_IO9
-set_location_assignment PIN_AH8	 -to cn0561_reset_adc     ; ##   Arduino_IO7
-set_location_assignment PIN_U13  -to cn0561_csb_aux       ; ##   Arduino_IO5
-set_location_assignment PIN_U14  -to cn0561_sw_ff         ; ##   Arduino_IO4
-set_location_assignment PIN_AG9  -to cn0561_drdy_aux      ; ##   Arduino_IO3
-set_location_assignment PIN_AF13 -to cn0561_blue_led      ; ##   Arduino_IO1
-set_location_assignment PIN_AG13 -to cn0561_yellow_led    ; ##   Arduino_IO0
+set_location_assignment PIN_AF13 -to cn0561_pdn           ; ##   Arduino_IO1
 
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_shutdown
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_reset_adc
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_csb_aux
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_sw_ff
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_drdy_aux
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_blue_led
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_yellow_led
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_pdn
 
 # synchronization and timing
 
-set_location_assignment PIN_AG8  -to cn0561_sync_in       ; ##   Arduino_IO6
-set_location_assignment PIN_AG10 -to cn0561_drdy          ; ##   Arduino_IO2
+set_location_assignment PIN_AG9  -to cn0561_odr           ; ##   Arduino_IO3
+set_location_assignment PIN_AG10 -to cn0561_dclk          ; ##   Arduino_IO2
+set_location_assignment PIN_U14  -to cn0561_din[0]        ; ##   Arduino_IO4
+set_location_assignment PIN_U13  -to cn0561_din[1]        ; ##   Arduino_IO5
+set_location_assignment PIN_AG8  -to cn0561_din[2]        ; ##   Arduino_IO6
+set_location_assignment PIN_AH8  -to cn0561_din[3]        ; ##   Arduino_IO7
 
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_sync_in
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_drdy
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_odr
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_dclk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_din[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_din[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_din[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to cn0561_din[3]
 
 execute_flow -compile

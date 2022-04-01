@@ -39,26 +39,26 @@ module system_top (
 
   // clock and resets
 
-  input            sys_clk,
+  input             sys_clk,
 
   // hps-ddr
 
-  output  [14:0]   ddr3_a,
-  output  [ 2:0]   ddr3_ba,
-  output           ddr3_reset_n,
-  output           ddr3_ck_p,
-  output           ddr3_ck_n,
-  output           ddr3_cke,
-  output           ddr3_cs_n,
-  output           ddr3_ras_n,
-  output           ddr3_cas_n,
-  output           ddr3_we_n,
-  inout   [31:0]   ddr3_dq,
-  inout   [ 3:0]   ddr3_dqs_p,
-  inout   [ 3:0]   ddr3_dqs_n,
-  output  [ 3:0]   ddr3_dm,
-  output           ddr3_odt,
-  input            ddr3_rzq,
+  output  [ 14:0]   ddr3_a,
+  output  [  2:0]   ddr3_ba,
+  output            ddr3_reset_n,
+  output            ddr3_ck_p,
+  output            ddr3_ck_n,
+  output            ddr3_cke,
+  output            ddr3_cs_n,
+  output            ddr3_ras_n,
+  output            ddr3_cas_n,
+  output            ddr3_we_n,
+  inout   [ 31:0]   ddr3_dq,
+  inout   [  3:0]   ddr3_dqs_p,
+  inout   [  3:0]   ddr3_dqs_n,
+  output  [  3:0]   ddr3_dm,
+  output            ddr3_odt,
+  input             ddr3_rzq,
 
   // hps-ethernet
 
@@ -115,69 +115,53 @@ module system_top (
   inout             hdmi_i2c_sda,
 
 
-  // cn0540
+  inout             i2c_sda,
+  inout             i2c_scl,
 
-  inout            i2c_sda,
-  inout            i2c_scl,
+  output            ltc2308_cs,
+  output            ltc2308_sclk,
+  output            ltc2308_mosi,
+  input             ltc2308_miso
 
-  input            cn0540_spi_miso,
-  output           cn0540_spi_mosi,
-  output           cn0561_spi_sclk,
-  output           cn0561_spi_cs,
-  input            cn0561_drdy,
+  // cn0561 SPI configuration interface
 
-  output           cn0561_reset_adc,
-  output           cn0561_shutdown,
-  output           cn0561_csb_aux,
-  input            cn0561_sw_ff,
-  output           cn0561_drdy_aux,
-  output           cn0561_blue_led,
-  output           cn0561_yellow_led,
-  output           cn0561_sync_in,
+  input             cn0561_spi_sdi,
+  output            cn0561_spi_sdo,
+  output            cn0561_spi_sclk,
+  output            cn0561_spi_cs,
+  
+  // cn0561 data interface
 
-  output           ltc2308_cs,
-  output           ltc2308_sclk,
-  output           ltc2308_mosi,
-  input            ltc2308_miso
-);
+  output            cn0561_dclk,
+  input   [  3:0]   cn0561_din,
+  output            cn0561_odr,
+
+  output            cn0561_pdn);
 
   // internal signals
 
-  wire             sys_resetn;
-  wire    [63:0]   gpio_i;
-  wire    [63:0]   gpio_o;
+  wire              sys_resetn;
+  wire    [ 63:0]   gpio_i;
+  wire    [ 63:0]   gpio_o;
 
-  wire             i2c1_scl;
-  wire             i2c1_scl_oe;
-  wire             i2c1_sda;
-  wire             i2c1_sda_oe;
+  wire              i2c1_scl;
+  wire              i2c1_scl_oe;
+  wire              i2c1_out_data;
+  wire              i2c1_sda_oe;
 
-  wire             i2c0_out_data;
-  wire             i2c0_sda;
-  wire             i2c0_out_clk;
-  wire             i2c0_scl_in_clk;
-
-  // instantiations
+  wire              i2c0_out_data;
+  wire              i2c0_sda;
+  wire              i2c0_out_clk;
+  wire              i2c0_scl_in_clk;
 
   // unused
-  assign gpio_i[63:42] = gpio_o[63:42];
-  assign gpio_i[37] = gpio_o[37];
+  assign gpio_i[63:33] = gpio_o[63:33];
 
   // GPIO outputs
-  assign ltc2308_cs = gpio_o[41];
-  assign cn0561_blue_led = gpio_o[40];
-  assign cn0561_yellow_led = gpio_o[39];
-  assign cn0561_shutdown = gpio_o[36];
-  assign cn0561_drdy_aux = gpio_o[35];
-  assign cn0561_sync_in = gpio_o[33];
-  assign cn0561_csb_aux = gpio_o[34];
-  assign cn0561_reset_adc = gpio_o[32];
-
+  assign cn0561_pdn = gpio_o[32];
   assign gpio_bd_o[7:0] = gpio_o[7:0];
 
   // GPIO inputs
-  assign gpio_i[38] = cn0561_sw_ff;
-
   assign gpio_i[31:14] = gpio_o[31:14];
   assign gpio_i[13:8] = gpio_bd_i[5:0];
 
@@ -279,8 +263,8 @@ module system_top (
     .sys_gpio_bd_out_port (gpio_o[31:0]),
     .sys_gpio_in_export (gpio_i[63:32]),
     .sys_gpio_out_export (gpio_o[63:32]),
-    .cn0561_spi_sdo_sdo (cn0561_spi_mosi),
-    .cn0561_spi_sdi_sdi (cn0561_spi_miso),
+    .cn0561_spi_sdo_sdo (cn0561_spi_sdo),
+    .cn0561_spi_sdi_sdi (cn0561_spi_sdi),
     .cn0561_spi_cs_cs (cn0561_spi_cs),
     .cn0561_spi_sclk_clk (cn0561_spi_sclk),
     .cn0561_spi_trigger_trigger (cn0561_drdy),
