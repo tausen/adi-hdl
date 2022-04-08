@@ -76,7 +76,6 @@ module ad_mmcm_drp #(
   localparam  ULTRASCALE = 2;
   localparam  ULTRASCALE_PLUS = 3;
 
-
   // internal registers
 
   reg             up_drp_locked_m1 = 'd0;
@@ -171,10 +170,21 @@ module ad_mmcm_drp #(
       .PWRDWN (1'b0),
       .RST (mmcm_rst));
 
-      BUFG i_fb_clk_bufg  (.I (mmcm_fb_clk_s),  .O (bufg_fb_clk_s));
-      BUFG i_clk_0_bufg   (.I (mmcm_clk_0_s),   .O (mmcm_clk_0));
-      BUFG i_clk_1_bufg   (.I (mmcm_clk_1_s),   .O (mmcm_clk_1));
-      BUFG i_clk_2_bufg   (.I (mmcm_clk_2_s),   .O (mmcm_clk_2));
+      BUFG i_fb_clk_bufg (
+        .I (mmcm_fb_clk_s),
+        .O (bufg_fb_clk_s));
+
+      BUFG i_clk_0_bufg (
+        .I (mmcm_clk_0_s),
+        .O (mmcm_clk_0));
+
+      BUFG i_clk_1_bufg (
+        .I (mmcm_clk_1_s),
+        .O (mmcm_clk_1));
+
+      BUFG i_clk_2_bufg (
+        .I (mmcm_clk_2_s),
+        .O (mmcm_clk_2));
 
   end else if (FPGA_TECHNOLOGY == ULTRASCALE) begin
     MMCME3_ADV #(
@@ -239,10 +249,21 @@ module ad_mmcm_drp #(
       .CDDCDONE (),
       .RST (mmcm_rst));
 
-      BUFG i_fb_clk_bufg  (.I (mmcm_fb_clk_s),  .O (bufg_fb_clk_s));
-      BUFG i_clk_0_bufg   (.I (mmcm_clk_0_s),   .O (mmcm_clk_0));
-      BUFG i_clk_1_bufg   (.I (mmcm_clk_1_s),   .O (mmcm_clk_1));
-      BUFG i_clk_2_bufg   (.I (mmcm_clk_2_s),   .O (mmcm_clk_2));
+      BUFG i_fb_clk_bufg (
+        .I (mmcm_fb_clk_s),
+        .O (bufg_fb_clk_s));
+
+      BUFG i_clk_0_bufg (
+        .I (mmcm_clk_0_s),
+        .O (mmcm_clk_0));
+
+      BUFG i_clk_1_bufg (
+        .I (mmcm_clk_1_s),
+        .O (mmcm_clk_1));
+
+      BUFG i_clk_2_bufg (
+        .I (mmcm_clk_2_s),
+        .O (mmcm_clk_2));
 
   end else if (FPGA_TECHNOLOGY == ULTRASCALE_PLUS) begin
     MMCME4_ADV #(
@@ -306,16 +327,23 @@ module ad_mmcm_drp #(
       .CDDCDONE (),
       .RST (mmcm_rst));
 
-      BUFG i_fb_clk_bufg  (.I (mmcm_fb_clk_s),  .O (bufg_fb_clk_s));
-      BUFG i_clk_0_bufg   (.I (mmcm_clk_0_s),   .O (mmcm_clk_0));
-      BUFG i_clk_1_bufg   (.I (mmcm_clk_1_s),   .O (mmcm_clk_1));
-      BUFG i_clk_2_bufg   (.I (mmcm_clk_2_s),   .O (mmcm_clk_2));
+      BUFG i_fb_clk_bufg (
+        .I (mmcm_fb_clk_s),
+        .O (bufg_fb_clk_s));
+
+      BUFG i_clk_0_bufg (
+        .I (mmcm_clk_0_s),
+        .O (mmcm_clk_0));
+
+      BUFG i_clk_1_bufg (
+        .I (mmcm_clk_1_s),
+        .O (mmcm_clk_1));
+
+      BUFG i_clk_2_bufg (
+        .I (mmcm_clk_2_s),
+        .O (mmcm_clk_2));
 
   end
   endgenerate
 
-
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

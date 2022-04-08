@@ -46,34 +46,33 @@ module util_clkdiv #(
   input   clk,
   input   reset,
   output  clk_out,
-  output  reset_out
- );
+  output  reset_out);
 
-reg enable;
-reg reset_d1;
+  reg enable;
+  reg reset_d1;
 
-assign reset_out = reset | reset_d1;
+  assign reset_out = reset | reset_d1;
 
-always @(posedge clk) begin
-  reset_d1 <= reset;
-end
+  always @(posedge clk) begin
+    reset_d1 <= reset;
+  end
 
-always @(posedge clk) begin
-  enable <= ~enable;
-end
+  always @(posedge clk) begin
+    enable <= ~enable;
+  end
 
-generate if (SIM_DEVICE == "CYCLONE5") begin
-	cyclonev_clkena #(
-		.clock_type ("Global Clock"),
-		.ena_register_mode ("falling edge"),
-		.lpm_type ("cyclonev_clkena")
-  ) clock_divider_by_2 (
-	.ena(enable),
-	.enaout(),
-	.inclk(clk),
-//	.clkselect (2'b0),
-	.outclk(clk_out));
+  generate if (SIM_DEVICE == "CYCLONE5") begin
+    cyclonev_clkena #(
+      .clock_type ("Global Clock"),
+      .ena_register_mode ("falling edge"),
+      .lpm_type ("cyclonev_clkena")
+    ) clock_divider_by_2 (
+      .ena(enable),
+      .enaout(),
+      .inclk(clk),
+      // .clkselect (2'b0),
+      .outclk(clk_out));
 
-end endgenerate
+  end endgenerate
 
-endmodule  // util_clkdiv
+endmodule

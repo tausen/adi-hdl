@@ -71,7 +71,6 @@ module axi_ad9684_channel #(
   output      [31:0]      up_rdata,
   output                  up_rack);
 
-
   // internal signals
 
   wire            adc_pn_oos_s;
@@ -94,7 +93,9 @@ module axi_ad9684_channel #(
   genvar n;
   generate
   for (n = 0; n < 2; n = n + 1) begin: g_ad_datafmt_1
-  ad_datafmt #(.DATA_WIDTH(14)) i_ad_datafmt (
+  ad_datafmt #(
+    .DATA_WIDTH(14)
+  ) i_ad_datafmt (
     .clk (adc_clk),
     .valid (1'b1),
     .data (adc_data[n*14+13:n*14]),
@@ -114,8 +115,8 @@ module axi_ad9684_channel #(
     .USERPORTS_DISABLE (0),
     .DATAFORMAT_DISABLE (0),
     .DCFILTER_DISABLE (0),
-    .IQCORRECTION_DISABLE (0))
-  i_up_adc_channel (
+    .IQCORRECTION_DISABLE (0)
+  ) i_up_adc_channel (
     .adc_clk (adc_clk),
     .adc_rst (adc_rst),
     .adc_enable (adc_enable),
@@ -162,4 +163,3 @@ module axi_ad9684_channel #(
     .up_rack (up_rack));
 
 endmodule
-

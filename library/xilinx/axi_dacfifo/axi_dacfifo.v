@@ -231,8 +231,7 @@ module axi_dacfifo #(
       .dac_rst(dac_rst),
       .dac_valid(dac_valid),
       .dac_data(dac_data_bypass_s),
-      .dac_dunf(dac_dunf_bypass_s)
-    );
+      .dac_dunf(dac_dunf_bypass_s));
 
     always @(posedge dma_clk) begin
       dma_bypass_m1 <= bypass;
@@ -279,4 +278,3 @@ module axi_dacfifo #(
   endgenerate
 
 endmodule
-

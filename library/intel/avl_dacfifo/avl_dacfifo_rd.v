@@ -42,7 +42,7 @@ module avl_dacfifo_rd #(
   parameter     AVL_BURST_LENGTH = 127,
   parameter     AVL_DDR_BASE_ADDRESS = 0,
   parameter     AVL_DDR_ADDRESS_LIMIT = 33554432,
-  parameter     DAC_MEM_ADDRESS_WIDTH = 8)(
+  parameter     DAC_MEM_ADDRESS_WIDTH = 8) (
 
   input                                     dac_clk,
   input                                     dac_reset,
@@ -192,8 +192,8 @@ module avl_dacfifo_rd #(
 
   always @(posedge avl_clk) begin
     if (avl_fifo_reset_s == 1'b1) begin
-       avl_read_state <= IDLE;
-       avl_burstcount <= AVL_BURST_LENGTH;
+      avl_read_state <= IDLE;
+      avl_burstcount <= AVL_BURST_LENGTH;
     end else begin
       case (avl_read_state)
         IDLE : begin
@@ -432,8 +432,8 @@ module avl_dacfifo_rd #(
   end
   ad_mem #(
     .DATA_WIDTH (DAC_MEM_ADDRESS_WIDTH),
-    .ADDRESS_WIDTH (8))
-  i_mem (
+    .ADDRESS_WIDTH (8)
+  ) i_mem (
     .clka (dac_clk),
     .wea (dac_mem_laddr_wea_s),
     .addra (dac_mem_laddr_waddr),
@@ -537,4 +537,3 @@ module avl_dacfifo_rd #(
   end
 
 endmodule
-

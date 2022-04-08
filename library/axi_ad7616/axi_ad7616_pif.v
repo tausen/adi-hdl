@@ -69,7 +69,6 @@ module axi_ad7616_pif #(
   output  reg [15:0]      rd_data,
   output  reg             rd_valid);
 
-
   // state registers
 
   localparam  [ 2:0]    IDLE = 3'h0,
@@ -212,4 +211,3 @@ module axi_ad7616_pif #(
   end
 
 endmodule
-

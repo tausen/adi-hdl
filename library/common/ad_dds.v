@@ -65,8 +65,7 @@ module ad_dds #(
   input       [                15:0]  tone_2_init_offset,
   input       [        PHASE_DW-1:0]  tone_1_freq_word,
   input       [        PHASE_DW-1:0]  tone_2_freq_word,
-  output  reg [DDS_DW*CLK_RATIO-1:0]  dac_dds_data
-  );
+  output  reg [DDS_DW*CLK_RATIO-1:0]  dac_dds_data);
 
   wire [DDS_DW*CLK_RATIO-1:0] dac_dds_data_s;
 
@@ -146,13 +145,13 @@ module ad_dds #(
         end
 
         // phase to amplitude convertor
-         ad_dds_2 #(
-           .DDS_DW (DDS_DW),
-           .PHASE_DW (PHASE_DW),
-           .DDS_TYPE (DDS_TYPE),
-           .CORDIC_DW (CORDIC_DW),
-           .CORDIC_PHASE_DW (CORDIC_PHASE_DW))
-         i_dds_2 (
+        ad_dds_2 #(
+          .DDS_DW (DDS_DW),
+          .PHASE_DW (PHASE_DW),
+          .DDS_TYPE (DDS_TYPE),
+          .CORDIC_DW (CORDIC_DW),
+          .CORDIC_PHASE_DW (CORDIC_PHASE_DW)
+        ) i_dds_2 (
           .clk (clk),
           .dds_format (dac_dds_format),
           .dds_phase_0 (dac_dds_phase_0_m[i]),

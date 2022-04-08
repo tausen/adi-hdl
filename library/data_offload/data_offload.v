@@ -126,8 +126,7 @@ module data_offload #(
 
   // Status and monitor
 
-  input                                       ddr_calib_done
-);
+  input                                       ddr_calib_done);
 
   // local parameters -- to make the code more readable
 
@@ -217,8 +216,8 @@ module data_offload #(
     .WR_DATA_WIDTH (SRC_DATA_WIDTH),
     .RD_ADDRESS_WIDTH (DST_ADDR_WIDTH),
     .RD_DATA_WIDTH (DST_DATA_WIDTH),
-    .SYNC_EXT_ADD_INTERNAL_CDC (SYNC_EXT_ADD_INTERNAL_CDC ))
-  i_data_offload_fsm (
+    .SYNC_EXT_ADD_INTERNAL_CDC (SYNC_EXT_ADD_INTERNAL_CDC )
+  ) i_data_offload_fsm (
     .up_clk (up_clk),
     .wr_clk (src_clk),
     .wr_resetn_in (src_rstn),
@@ -245,8 +244,7 @@ module data_offload #(
     .sync_internal (sync_int_s),
     .wr_fsm_state (src_fsm_status_s),
     .rd_fsm_state (dst_fsm_status_s),
-    .sample_count (sample_count_s)
-  );
+    .sample_count (sample_count_s));
 
   // In case of external memory, read back can not start right after the write
   // was finished (because of the CDC FIFOs and the latency of the EMIF
@@ -269,8 +267,8 @@ module data_offload #(
   assign fifo_dst_ren = dst_mem_valid_s;
 
   ad_axis_inf_rx #(
-    .DATA_WIDTH (DST_DATA_WIDTH))
-  i_rx_axis_inf (
+    .DATA_WIDTH (DST_DATA_WIDTH)
+  ) i_rx_axis_inf (
     .clk (m_axis_aclk),
     .rst (m_axis_reset_int_s),
     .valid (dst_mem_valid_int_s),
@@ -294,8 +292,8 @@ module data_offload #(
     .S_DATA_WIDTH (SRC_DATA_WIDTH),
     .S_ADDRESS_WIDTH (SRC_ADDR_WIDTH_BYPASS),
     .M_DATA_WIDTH (DST_DATA_WIDTH),
-    .ASYNC_CLK (1))
-  i_bypass_fifo (
+    .ASYNC_CLK (1)
+  ) i_bypass_fifo (
     .m_axis_aclk (m_axis_aclk),
     .m_axis_aresetn (dst_rstn),
     .m_axis_ready (m_axis_ready),
@@ -311,8 +309,7 @@ module data_offload #(
     .s_axis_data  (s_axis_data),
     .s_axis_tlast (),
     .s_axis_full  (),
-    .s_axis_almost_full ()
-  );
+    .s_axis_almost_full ());
 
   // register map
 
@@ -321,8 +318,8 @@ module data_offload #(
     .MEM_TYPE (MEM_TYPE),
     .MEM_SIZE (MEM_SIZE),
     .TX_OR_RXN_PATH (TX_OR_RXN_PATH),
-    .AUTO_BRINGUP (AUTO_BRINGUP))
-  i_regmap (
+    .AUTO_BRINGUP (AUTO_BRINGUP)
+  ) i_regmap (
     .up_clk (up_clk),
     .up_rstn (up_rstn),
     .up_rreq (up_rreq_s),
@@ -347,8 +344,7 @@ module data_offload #(
     .src_fsm_status (src_fsm_status_s),
     .dst_fsm_status (dst_fsm_status_s),
     .sample_count_msb (sample_count_s[63:32]),
-    .sample_count_lsb (sample_count_s[31: 0])
-  );
+    .sample_count_lsb (sample_count_s[31: 0]));
 
   // axi interface wrapper
 
@@ -356,8 +352,8 @@ module data_offload #(
   assign up_rstn = s_axi_aresetn;
 
   up_axi #(
-    .AXI_ADDRESS_WIDTH (16))
-  i_up_axi (
+    .AXI_ADDRESS_WIDTH (16)
+  ) i_up_axi (
     .up_rstn (up_rstn),
     .up_clk (up_clk),
     .up_axi_awvalid (s_axi_awvalid),
@@ -386,30 +382,29 @@ module data_offload #(
     .up_rdata (up_rdata_s),
     .up_rack (up_rack_s));
 
-/* Beat counter on the source interface
-*
- * The storage unit can have size of a couple of Gbyte, which in case of an RX
- * path would mean to fill up all that memory space before pushing over the
- * stream to the RX DMA. (ADC can not generate a tlast) To make things more
- * practical, user can set an arbitrary transfer length using the
- * transfer_length register, which will be used to generate an internal tlast
- * signal for the source FSM. If the register is set to zero, all the memory
- * will be filled up, before passing control to the destination FSM.
- *
- */
+  /* Beat counter on the source interface
+   *
+   * The storage unit can have size of a couple of Gbyte, which in case of an RX
+   * path would mean to fill up all that memory space before pushing over the
+   * stream to the RX DMA. (ADC can not generate a tlast) To make things more
+   * practical, user can set an arbitrary transfer length using the
+   * transfer_length register, which will be used to generate an internal tlast
+   * signal for the source FSM. If the register is set to zero, all the memory
+   * will be filled up, before passing control to the destination FSM.
+   *
+   */
 
-always @(posedge s_axis_aclk) begin
-  if (fifo_src_resetn == 1'b0) begin       // counter should reset when source FMS resets
-    src_data_counter <= 0;
-  end else begin
-    if (fifo_src_wen & src_wr_ready_s) begin
-      src_data_counter <= src_data_counter + 1'b1;
+  always @(posedge s_axis_aclk) begin
+    if (fifo_src_resetn == 1'b0) begin       // counter should reset when source FMS resets
+      src_data_counter <= 0;
+    end else begin
+      if (fifo_src_wen & src_wr_ready_s) begin
+        src_data_counter <= src_data_counter + 1'b1;
+      end
     end
   end
-end
-// transfer length is in bytes, but counter monitors the source data beats
-assign src_wr_last_beat_s = (src_transfer_length_s == 'h0) ? MEM_SIZE[33:SRC_BEAT_BYTE]-1 : src_transfer_length_s[33:SRC_BEAT_BYTE]-1;
-assign src_wr_last_int_s = (src_data_counter == src_wr_last_beat_s) ?  1'b1 : 1'b0;
+  // transfer length is in bytes, but counter monitors the source data beats
+  assign src_wr_last_beat_s = (src_transfer_length_s == 'h0) ? MEM_SIZE[33:SRC_BEAT_BYTE]-1 : src_transfer_length_s[33:SRC_BEAT_BYTE]-1;
+  assign src_wr_last_int_s = (src_data_counter == src_wr_last_beat_s) ?  1'b1 : 1'b0;
 
 endmodule
-

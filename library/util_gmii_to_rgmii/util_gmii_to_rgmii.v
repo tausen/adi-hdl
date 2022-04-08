@@ -75,7 +75,6 @@ module util_gmii_to_rgmii #(
   output  reg             gmii_rx_er,
   output                  gmii_rx_clk);
 
-
   // wires
   wire            clk_2_5m;
   wire            clk_100msps;
@@ -284,11 +283,11 @@ module util_gmii_to_rgmii #(
   mdc_mdio  #(
     .PHY_AD(PHY_AD)
   ) mdc_mdio_in(
-      .mdio_mdc(mdio_mdc),
-      .mdio_in_w(mdio_in_w),
-      .mdio_in_r(mdio_in_r),
-      .speed_select(speed_selection),
-      .duplex_mode(duplex_mode));
+    .mdio_mdc(mdio_mdc),
+    .mdio_in_w(mdio_in_w),
+    .mdio_in_r(mdio_in_r),
+    .speed_select(speed_selection),
+    .duplex_mode(duplex_mode));
 
   // DELAY CONTROLLER
   generate

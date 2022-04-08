@@ -166,7 +166,9 @@ module axi_ad9671_pnmon (
 
   // pn oos & pn err
 
-  ad_pnmon #(.DATA_WIDTH(32)) i_pnmon (
+  ad_pnmon #(
+    .DATA_WIDTH(32)
+  ) i_pnmon (
     .adc_clk (adc_clk),
     .adc_valid_in (adc_pn_valid_s),
     .adc_data_in (adc_pn_data_in),
@@ -175,7 +177,3 @@ module axi_ad9671_pnmon (
     .adc_pn_err (adc_pn_err));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************
-

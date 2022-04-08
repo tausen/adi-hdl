@@ -53,7 +53,7 @@ module axi_pwm_gen_regmap #(
   parameter  PULSE_0_OFFSET = 0,
   parameter  PULSE_1_OFFSET = 0,
   parameter  PULSE_2_OFFSET = 0,
-  parameter  PULSE_3_OFFSET = 0)(
+  parameter  PULSE_3_OFFSET = 0) (
 
   // external clock
 
@@ -79,8 +79,7 @@ module axi_pwm_gen_regmap #(
   input                   up_rreq,
   input       [13:0]      up_raddr,
   output reg  [31:0]      up_rdata,
-  output reg              up_rack
-);
+  output reg              up_rack);
 
   // internal registers
 
@@ -215,8 +214,8 @@ module axi_pwm_gen_regmap #(
 
     sync_data #(
       .NUM_OF_BITS (128),
-      .ASYNC_CLK (1))
-    i_pwm_period_sync (
+      .ASYNC_CLK (1)
+    ) i_pwm_period_sync (
       .in_clk (up_clk),
       .in_data ({up_pwm_period_3,
                  up_pwm_period_2,
@@ -227,8 +226,8 @@ module axi_pwm_gen_regmap #(
 
     sync_data #(
       .NUM_OF_BITS (128),
-      .ASYNC_CLK (1))
-    i_pwm_width_sync (
+      .ASYNC_CLK (1)
+    ) i_pwm_width_sync (
       .in_clk (up_clk),
       .in_data ({up_pwm_width_3,
                  up_pwm_width_2,
@@ -239,8 +238,8 @@ module axi_pwm_gen_regmap #(
 
     sync_data #(
       .NUM_OF_BITS (128),
-      .ASYNC_CLK (1))
-    i_pwm_offset_sync (
+      .ASYNC_CLK (1)
+    ) i_pwm_offset_sync (
       .in_clk (up_clk),
       .in_data ({up_pwm_offset_3,
                  up_pwm_offset_2,
@@ -251,8 +250,8 @@ module axi_pwm_gen_regmap #(
 
     sync_event #(
       .NUM_OF_EVENTS (1),
-      .ASYNC_CLK (1))
-    i_load_config_sync (
+      .ASYNC_CLK (1)
+    ) i_load_config_sync (
       .in_clk (up_clk),
       .in_event (up_load_config),
       .out_clk (clk_out),

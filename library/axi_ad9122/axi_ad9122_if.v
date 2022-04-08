@@ -103,7 +103,6 @@ module axi_ad9122_if #(
   output                  up_drp_ready,
   output                  up_drp_locked);
 
-
   // internal registers
 
   reg             dac_status_m1 = 'd0;
@@ -130,8 +129,8 @@ module axi_ad9122_if #(
   ad_serdes_out #(
     .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
     .DDR_OR_SDR_N (SERDES_OR_DDR_N),
-    .DATA_WIDTH (16))
-  i_serdes_out_data (
+    .DATA_WIDTH (16)
+  ) i_serdes_out_data (
     .rst (dac_rst),
     .clk (dac_clk),
     .div_clk (dac_div_clk),
@@ -154,8 +153,8 @@ module axi_ad9122_if #(
   ad_serdes_out #(
     .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
     .DDR_OR_SDR_N (SERDES_OR_DDR_N),
-    .DATA_WIDTH (1))
-  i_serdes_out_frame (
+    .DATA_WIDTH (1)
+  ) i_serdes_out_frame (
     .rst (dac_rst),
     .clk (dac_clk),
     .div_clk (dac_div_clk),
@@ -178,8 +177,8 @@ module axi_ad9122_if #(
   ad_serdes_out #(
     .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
     .DDR_OR_SDR_N (SERDES_OR_DDR_N),
-    .DATA_WIDTH (1))
-  i_serdes_out_clk (
+    .DATA_WIDTH (1)
+  ) i_serdes_out_clk (
     .rst (dac_rst),
     .clk (dac_clk),
     .div_clk (dac_div_clk),
@@ -207,8 +206,8 @@ module axi_ad9122_if #(
     .MMCM_VCO_DIV (MMCM_VCO_DIV),
     .MMCM_VCO_MUL (MMCM_VCO_MUL),
     .MMCM_CLK0_DIV (MMCM_CLK0_DIV),
-    .MMCM_CLK1_DIV (MMCM_CLK1_DIV))
-  i_serdes_clk (
+    .MMCM_CLK1_DIV (MMCM_CLK1_DIV)
+  ) i_serdes_clk (
     .rst (mmcm_rst),
     .clk_in_p (dac_clk_in_p),
     .clk_in_n (dac_clk_in_n),
@@ -228,6 +227,3 @@ module axi_ad9122_if #(
     .up_drp_locked (up_drp_locked));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

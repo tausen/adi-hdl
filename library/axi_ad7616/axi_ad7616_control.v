@@ -65,9 +65,7 @@ module axi_ad7616_control #(
   input                   up_rreq,
   input       [13:0]      up_raddr,
   output  reg [31:0]      up_rdata,
-  output  reg             up_rack
-);
-
+  output  reg             up_rack);
 
   localparam  PCORE_VERSION = 'h00001002;
   localparam  POS_EDGE = 0;
@@ -170,8 +168,7 @@ module axi_ad7616_control #(
     .clk (up_clk),
     .rst (up_rst),
     .signal_in (busy),
-    .signal_out (end_of_conv)
-  );
+    .signal_out (end_of_conv));
 
   // convertion start generator
   // NOTE: + The minimum convertion cycle is 1 us
@@ -208,4 +205,3 @@ module axi_ad7616_control #(
   assign cnvst = (up_cnvst_en == 1'b1) ? cnvst_buf : 1'b0;
 
 endmodule
-

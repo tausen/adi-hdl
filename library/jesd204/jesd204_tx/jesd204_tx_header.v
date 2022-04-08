@@ -60,13 +60,10 @@ module jesd204_tx_header (
   input [25:0] fec,
   input [18:0] cmd,
 
-  output [1:0] header
-
-);
+  output [1:0] header);
 
   reg header_bit;
   reg [31:0] sync_word = 'h0;
-
 
   always @(posedge clk) begin
     if (reset) begin

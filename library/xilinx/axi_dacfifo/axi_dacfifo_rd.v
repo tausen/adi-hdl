@@ -90,7 +90,6 @@ module axi_dacfifo_rd #(
   `define max(a,b) {(a) > (b) ? (a) : (b)}
   `define min(a,b) {(a) < (b) ? (a) : (b)}
 
-
   localparam  AXI_BYTE_WIDTH = AXI_DATA_WIDTH/8;
   localparam  AXI_ARINCR = (AXI_LENGTH + 1) * AXI_BYTE_WIDTH;
 
@@ -119,9 +118,9 @@ module axi_dacfifo_rd #(
   reg                                   axi_data_req = 1'b0;
   reg     [ 4:0]                        axi_read_state = 5'b0;
   reg     [(AXI_MEM_ADDRESS_WIDTH-1):0] axi_mem_waddr = 'd0;
- (* dont_touch = "true" *) reg     [(AXI_MEM_ADDRESS_WIDTH-1):0] axi_mem_laddr = 'd0;
+  (* dont_touch = "true" *) reg     [(AXI_MEM_ADDRESS_WIDTH-1):0] axi_mem_laddr = 'd0;
   reg     [(DAC_MEM_ADDRESS_WIDTH-1):0] axi_mem_waddr_g = 'd0;
- (* dont_touch = "true" *) reg                                  axi_mem_laddr_toggle = 1'b0;
+  (* dont_touch = "true" *) reg                                  axi_mem_laddr_toggle = 1'b0;
   reg     [(DAC_MEM_ADDRESS_WIDTH-1):0] axi_mem_raddr = 'd0;
   reg     [(DAC_MEM_ADDRESS_WIDTH-1):0] axi_mem_raddr_m1 = 'd0;
   reg     [(DAC_MEM_ADDRESS_WIDTH-1):0] axi_mem_raddr_m2 = 'd0;
@@ -166,8 +165,8 @@ module axi_dacfifo_rd #(
     .A_ADDRESS_WIDTH (AXI_MEM_ADDRESS_WIDTH),
     .A_DATA_WIDTH (AXI_DATA_WIDTH),
     .B_ADDRESS_WIDTH (DAC_MEM_ADDRESS_WIDTH),
-    .B_DATA_WIDTH (DAC_DATA_WIDTH))
-  i_mem_asym (
+    .B_DATA_WIDTH (DAC_DATA_WIDTH)
+  ) i_mem_asym (
     .clka (axi_clk),
     .wea (axi_dvalid_s),
     .addra (axi_mem_waddr),
@@ -302,7 +301,7 @@ module axi_dacfifo_rd #(
     end
   end
 
-  ad_b2g # (
+  ad_b2g #(
     .DATA_WIDTH(DAC_MEM_ADDRESS_WIDTH)
   ) i_axi_mem_waddr_b2g (
     .din (axi_mem_waddr_s),
@@ -392,8 +391,8 @@ module axi_dacfifo_rd #(
 
   axi_dacfifo_address_buffer #(
     .ADDRESS_WIDTH (4),
-    .DATA_WIDTH (DAC_MEM_ADDRESS_WIDTH))
-  i_laddress_buffer (
+    .DATA_WIDTH (DAC_MEM_ADDRESS_WIDTH)
+  ) i_laddress_buffer (
     .clk (dac_clk),
     .rst (dac_fifo_reset_s),
     .wea (dac_laddr_wea),
@@ -461,7 +460,7 @@ module axi_dacfifo_rd #(
     end
   end
 
-  ad_b2g # (
+  ad_b2g #(
     .DATA_WIDTH(DAC_MEM_ADDRESS_WIDTH)
   ) i_dac_mem_raddr_b2g (
     .din (dac_mem_raddr),
@@ -480,6 +479,3 @@ module axi_dacfifo_rd #(
   end
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

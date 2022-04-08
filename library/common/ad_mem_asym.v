@@ -56,7 +56,6 @@ module ad_mem_asym #(
   input       [B_ADDRESS_WIDTH-1:0] addrb,
   output  reg [B_DATA_WIDTH-1:0]    doutb);
 
-
   `define max(a,b) {(a) > (b) ? (a) : (b)}
   `define min(a,b) {(a) < (b) ? (a) : (b)}
 
@@ -145,6 +144,3 @@ module ad_mem_asym #(
   endgenerate
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

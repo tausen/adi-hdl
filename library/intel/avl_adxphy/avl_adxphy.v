@@ -217,7 +217,6 @@ module avl_adxphy #(
   input                               tx_ip_bit_reversal,
   input                               tx_ip_byte_reversal,
 
-
   // tx-phy interface
 
   input                               tx_phy_cal_busy_0,
@@ -919,7 +918,3 @@ module avl_adxphy #(
   assign tx_phy_byte_reversal_7 = tx_ip_byte_reversal;
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************
-

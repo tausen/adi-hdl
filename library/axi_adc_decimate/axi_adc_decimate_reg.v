@@ -129,7 +129,9 @@ module axi_adc_decimate_reg(
     end
   end
 
-   up_xfer_cntrl #(.DATA_WIDTH(69)) i_xfer_cntrl (
+  up_xfer_cntrl #(
+    .DATA_WIDTH (69)
+  ) i_xfer_cntrl (
     .up_rstn (up_rstn),
     .up_clk (up_clk),
     .up_data_cntrl ({ up_config[1],                 // 1
@@ -150,7 +152,3 @@ module axi_adc_decimate_reg(
                       adc_filter_mask}));           // 3
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************
-

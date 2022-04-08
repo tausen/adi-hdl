@@ -70,7 +70,6 @@ module axi_ad9671_channel #(
   output      [31:0]      up_rdata,
   output                  up_rack);
 
-
   // internal signals
 
   wire            adc_dfmt_se_s;
@@ -90,7 +89,9 @@ module axi_ad9671_channel #(
     .adc_pn_err (adc_pn_err_s),
     .adc_pnseq_sel (adc_pnseq_sel_s));
 
-  ad_datafmt #(.DATA_WIDTH(16)) i_ad_datafmt (
+  ad_datafmt #(
+    .DATA_WIDTH(16)
+  ) i_ad_datafmt (
     .clk (adc_clk),
     .valid (adc_valid),
     .data (adc_data),
@@ -100,7 +101,9 @@ module axi_ad9671_channel #(
     .dfmt_type (adc_dfmt_type_s),
     .dfmt_se (adc_dfmt_se_s));
 
-  up_adc_channel #(.CHANNEL_ID(CHANNEL_ID)) i_up_adc_channel (
+  up_adc_channel #(
+    .CHANNEL_ID(CHANNEL_ID)
+  ) i_up_adc_channel (
     .adc_clk (adc_clk),
     .adc_rst (adc_rst),
     .adc_enable (adc_enable),
@@ -147,7 +150,3 @@ module axi_ad9671_channel #(
     .up_rack (up_rack));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************
-

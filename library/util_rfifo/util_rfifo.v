@@ -118,7 +118,6 @@ module util_rfifo #(
   output      [DOUT_DATA_WIDTH-1:0]       dout_data_7,
   output  reg                             dout_unf);
 
-
   localparam  M_MEM_RATIO = DOUT_DATA_WIDTH/DIN_DATA_WIDTH;
   localparam  ADDRESS_WIDTH = (DIN_ADDRESS_WIDTH > 5) ? DIN_ADDRESS_WIDTH : 5;
   localparam  DATA_WIDTH = DOUT_DATA_WIDTH * NUM_OF_CHANNELS;
@@ -161,7 +160,6 @@ module util_rfifo #(
   wire        [ 2:0]                      din_wcnt_s;
 
   // variables
-
 
   // enables & valids
 
@@ -389,7 +387,10 @@ module util_rfifo #(
 
   // instantiations
 
-  ad_mem #(.ADDRESS_WIDTH(ADDRESS_WIDTH), .DATA_WIDTH(DATA_WIDTH)) i_mem (
+  ad_mem #(
+    .ADDRESS_WIDTH(ADDRESS_WIDTH),
+    .DATA_WIDTH(DATA_WIDTH)
+  ) i_mem (
     .clka (din_clk),
     .wea (din_wr),
     .addra (din_waddr),
@@ -400,6 +401,3 @@ module util_rfifo #(
     .doutb (dout_rdata_s));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

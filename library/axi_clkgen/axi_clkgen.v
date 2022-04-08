@@ -85,7 +85,6 @@ module axi_clkgen #(
   input       [ 2:0]      s_axi_awprot,
   input       [ 2:0]      s_axi_arprot);
 
-
   // reset and clocks
 
   wire            mmcm_rst;
@@ -199,8 +198,8 @@ module axi_clkgen #(
     .MMCM_CLK0_DIV (CLK0_DIV),
     .MMCM_CLK0_PHASE (CLK0_PHASE),
     .MMCM_CLK1_DIV (CLK1_DIV),
-    .MMCM_CLK1_PHASE (CLK1_PHASE))
-  i_mmcm_drp (
+    .MMCM_CLK1_PHASE (CLK1_PHASE)
+  ) i_mmcm_drp (
     .clk (clk),
     .clk2 (clk2),
     .clk_sel(clk_sel_s),
@@ -219,6 +218,3 @@ module axi_clkgen #(
     .up_drp_locked (up_drp_locked_s));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

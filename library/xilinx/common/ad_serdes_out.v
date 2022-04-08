@@ -75,7 +75,6 @@ module ad_serdes_out #(
                           FPGA_TECHNOLOGY == ULTRASCALE_PLUS ? "ULTRASCALE_PLUS" :
                           "UNSUPPORTED";
 
-
   // internal signals
 
   wire    [(DATA_WIDTH-1):0]  data_out_s;
@@ -108,8 +107,8 @@ module ad_serdes_out #(
         .DATA_RATE_TQ ("SDR"),
         .DATA_WIDTH (SERDES_FACTOR),
         .TRISTATE_WIDTH (1),
-        .SERDES_MODE ("MASTER"))
-      i_serdes (
+        .SERDES_MODE ("MASTER")
+      ) i_serdes (
         .D1 (data_s0[l_inst]),
         .D2 (data_s1[l_inst]),
         .D3 (data_s2[l_inst]),
@@ -142,8 +141,8 @@ module ad_serdes_out #(
     if (FPGA_TECHNOLOGY == ULTRASCALE || FPGA_TECHNOLOGY == ULTRASCALE_PLUS) begin
       OSERDESE3  #(
         .DATA_WIDTH (SERDES_FACTOR),
-        .SIM_DEVICE (SIM_DEVICE))
-      i_serdes (
+        .SIM_DEVICE (SIM_DEVICE)
+      ) i_serdes (
         .D ({data_s7[l_inst],
              data_s6[l_inst],
              data_s5[l_inst],
@@ -181,7 +180,3 @@ module ad_serdes_out #(
   endgenerate
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************
-

@@ -582,7 +582,7 @@ module axi_fmcadc5_sync #(
           14'h0001: up_rdata <= ID;
           14'h0002: up_rdata <= up_scratch;
           14'h0003: up_rdata <= up_timer;
-	  14'h0007: up_rdata <= {FPGA_TECHNOLOGY,FPGA_FAMILY,SPEED_GRADE,DEV_PACKAGE}; // [8,8,8,8]
+          14'h0007: up_rdata <= {FPGA_TECHNOLOGY,FPGA_FAMILY,SPEED_GRADE,DEV_PACKAGE}; // [8,8,8,8]
           14'h0010: up_rdata <= {31'd0, up_spi_req};
           14'h0011: up_rdata <= {31'd0, up_spi_gnt};
           14'h0012: up_rdata <= {24'd0, up_spi_csn};
@@ -770,8 +770,8 @@ module axi_fmcadc5_sync #(
     .IODELAY_ENABLE (1),
     .IODELAY_CTRL (1),
     .IODELAY_GROUP ("FMCADC5_SYSREF_IODELAY_GROUP"),
-    .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY))
-  i_rx_sysref (
+    .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY)
+  ) i_rx_sysref (
     .tx_clk (rx_clk),
     .tx_data_p (rx_sysref_e),
     .tx_data_n (rx_sysref_e),
@@ -817,6 +817,3 @@ module axi_fmcadc5_sync #(
     .up_rack (up_rack));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

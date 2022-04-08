@@ -41,8 +41,8 @@ module pack_network #(
   parameter MIN_STAGE = 1,
   parameter NUM_STAGES = 1,
   parameter PACK = 0,
-  parameter PORT_DATA_WIDTH = 16
-) (
+  parameter PORT_DATA_WIDTH = 16) (
+
   input clk,
   input ce_ctrl,
 
@@ -50,8 +50,7 @@ module pack_network #(
   input [2**PORT_ADDRESS_WIDTH*PORT_ADDRESS_WIDTH-1:0] prefix_count,
 
   input [PORT_DATA_WIDTH * 2**PORT_ADDRESS_WIDTH-1:0] data_in,
-  output [PORT_DATA_WIDTH * 2**PORT_ADDRESS_WIDTH-1:0] data_out
-);
+  output [PORT_DATA_WIDTH * 2**PORT_ADDRESS_WIDTH-1:0] data_out);
 
   localparam CTRL_WIDTH = 2**PORT_ADDRESS_WIDTH * NUM_STAGES * MUX_ORDER;
 
@@ -68,8 +67,7 @@ module pack_network #(
   ) i_ctrl (
     .rotate(rotate),
     .prefix_count(prefix_count),
-    .ctrl(ctrl_s)
-  );
+    .ctrl(ctrl_s));
 
   always @(posedge clk) begin
     if (ce_ctrl == 1'b1) begin
@@ -103,7 +101,6 @@ module pack_network #(
     .ctrl(ctrl_),
 
     .data_in(data_in),
-    .data_out(data_out)
-  );
+    .data_out(data_out));
 
 endmodule

@@ -56,9 +56,7 @@ module util_adxcvr_xcm #(
   parameter   [15:0]  QPLL_CFG4 = 16'b0000000000000011,
   parameter   [15:0]  QPLL_CP_G3 = 10'b0000011111,
   parameter   [15:0]  QPLL_LPF = 10'b0100110111,
-  parameter   [15:0]  QPLL_CP = 10'b0001111111
-
-) (
+  parameter   [15:0]  QPLL_CP = 10'b0001111111) (
 
   // reset and clocks
 
@@ -738,7 +736,3 @@ module util_adxcvr_xcm #(
   endgenerate
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************
-

@@ -40,8 +40,7 @@ module axi_ad9250 #(
   parameter   FPGA_TECHNOLOGY = 0,
   parameter   FPGA_FAMILY = 0,
   parameter   SPEED_GRADE = 0,
-  parameter   DEV_PACKAGE = 0
-) (
+  parameter   DEV_PACKAGE = 0) (
 
   // jesd interface
   // rx_clk is (line-rate/40)
@@ -135,7 +134,6 @@ module axi_ad9250 #(
     .s_axi_rvalid (s_axi_rvalid),
     .s_axi_rready (s_axi_rready),
     .s_axi_rresp (s_axi_rresp),
-    .s_axi_rdata (s_axi_rdata)
-  );
+    .s_axi_rdata (s_axi_rdata));
 
 endmodule

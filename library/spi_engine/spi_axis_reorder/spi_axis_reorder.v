@@ -50,8 +50,7 @@ module spi_axis_reorder #(
 
   output                         m_axis_valid,
   input                          m_axis_ready,
-  output     [63:0]              m_axis_data
-);
+  output     [63:0]              m_axis_data);
 
   // re-packager is always ready
   assign s_axis_ready = 1'b1;

@@ -38,29 +38,26 @@
 module ad_mux_core #(
   parameter CH_W = 16,
   parameter CH_CNT = 8,
-  parameter EN_REG = 0
-) (
+  parameter EN_REG = 0) (
+
   input clk,
   input [CH_W*CH_CNT-1:0] data_in,
   input [$clog2(CH_CNT)-1:0] ch_sel,
-  output [CH_W-1:0] data_out
-);
+  output [CH_W-1:0] data_out);
 
-wire [CH_W-1:0] data_out_loc;
+  wire [CH_W-1:0] data_out_loc;
 
-assign data_out_loc = data_in >> CH_W*ch_sel;
+  assign data_out_loc = data_in >> CH_W*ch_sel;
 
-generate if (EN_REG) begin
-  reg [CH_W-1:0] data_out_reg;
-  always @(posedge clk) begin
-    data_out_reg <= data_out_loc;
+  generate if (EN_REG) begin
+    reg [CH_W-1:0] data_out_reg;
+    always @(posedge clk) begin
+      data_out_reg <= data_out_loc;
+    end
+    assign data_out = data_out_reg;
+  end else begin
+    assign data_out = data_out_loc;
   end
-  assign data_out = data_out_reg;
-end else begin
-  assign data_out = data_out_loc;
-end
-endgenerate
+  endgenerate
 
 endmodule
-
-

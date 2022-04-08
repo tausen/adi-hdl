@@ -83,7 +83,6 @@ module axi_ad9783_core #(
   output reg  [ 31:0]     up_rdata,
   output reg              up_rack);
 
-
   // internal registers
 
   // internal signals
@@ -129,8 +128,8 @@ module axi_ad9783_core #(
     .DAC_DDS_TYPE (DAC_DDS_TYPE),
     .DAC_DDS_CORDIC_DW (DAC_DDS_CORDIC_DW),
     .DAC_DDS_CORDIC_PHASE_DW (DAC_DDS_CORDIC_PHASE_DW),
-    .DATAPATH_DISABLE(DATAPATH_DISABLE))
-  i_channel_0 (
+    .DATAPATH_DISABLE(DATAPATH_DISABLE)
+  ) i_channel_0 (
     .dac_div_clk (dac_div_clk),
     .dac_rst (dac_rst),
     .dac_enable (dac_enable_0_reg),
@@ -157,8 +156,8 @@ module axi_ad9783_core #(
     .DAC_DDS_TYPE (DAC_DDS_TYPE),
     .DAC_DDS_CORDIC_DW (DAC_DDS_CORDIC_DW),
     .DAC_DDS_CORDIC_PHASE_DW (DAC_DDS_CORDIC_PHASE_DW),
-    .DATAPATH_DISABLE(DATAPATH_DISABLE))
-  i_channel_1 (
+    .DATAPATH_DISABLE(DATAPATH_DISABLE)
+  ) i_channel_1 (
     .dac_div_clk (dac_div_clk),
     .dac_rst (dac_rst),
     .dac_enable (dac_enable_1_reg),
@@ -187,8 +186,8 @@ module axi_ad9783_core #(
     .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
     .FPGA_FAMILY (FPGA_FAMILY),
     .SPEED_GRADE (SPEED_GRADE),
-    .DEV_PACKAGE (DEV_PACKAGE))
-  i_up_dac_common (
+    .DEV_PACKAGE (DEV_PACKAGE)
+  ) i_up_dac_common (
     .mmcm_rst (),
     .dac_clk (dac_div_clk),
     .dac_rst (dac_rst),
@@ -230,6 +229,3 @@ module axi_ad9783_core #(
     .up_rack (up_rack_s));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

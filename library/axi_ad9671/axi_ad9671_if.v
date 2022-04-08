@@ -77,7 +77,6 @@ module axi_ad9671_if #(
   input       [ 3:0]      adc_raddr_in,
   output  reg [ 3:0]      adc_raddr_out);
 
-
   // internal wires
 
   wire    [(2*QUAD_OR_DUAL_N)+1:0]      rx_sof_s;
@@ -184,7 +183,10 @@ module axi_ad9671_if #(
     end
   end
 
-  ad_mem #(.ADDRESS_WIDTH(4), .DATA_WIDTH(128)) i_mem (
+  ad_mem #(
+    .ADDRESS_WIDTH(4),
+    .DATA_WIDTH(128)
+  ) i_mem (
     .clka(rx_clk),
     .wea(int_valid),
     .addra(adc_waddr),
@@ -210,7 +212,3 @@ module axi_ad9671_if #(
   endgenerate
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************
-

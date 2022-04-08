@@ -44,7 +44,6 @@ module ad_iobuf #(
   output      [(DATA_WIDTH-1):0]  dio_o,
   inout       [(DATA_WIDTH-1):0]  dio_p);
 
-
   genvar n;
   generate
   for (n = 0; n < DATA_WIDTH; n = n + 1) begin: g_iobuf
@@ -54,6 +53,3 @@ module ad_iobuf #(
   endgenerate
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

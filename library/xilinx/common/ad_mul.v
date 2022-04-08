@@ -53,7 +53,6 @@ module ad_mul #(
   input       [(DELAY_DATA_WIDTH-1):0]  ddata_in,
   output  reg [(DELAY_DATA_WIDTH-1):0]  ddata_out);
 
-
   // internal registers
 
   reg     [(DELAY_DATA_WIDTH-1):0]    p1_ddata = 'd0;
@@ -80,6 +79,3 @@ module ad_mul #(
     .P (data_p));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************
