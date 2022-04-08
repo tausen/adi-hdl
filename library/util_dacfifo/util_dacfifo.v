@@ -333,4 +333,3 @@ module util_dacfifo #(
   end
 
 endmodule
-

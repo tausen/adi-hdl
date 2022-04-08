@@ -258,4 +258,3 @@ module avl_dacfifo #(
   endgenerate
 
 endmodule
-

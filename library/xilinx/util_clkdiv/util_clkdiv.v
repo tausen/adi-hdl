@@ -95,4 +95,3 @@ end endgenerate
     .O (clk_out));
 
 endmodule  // util_clkdiv
-

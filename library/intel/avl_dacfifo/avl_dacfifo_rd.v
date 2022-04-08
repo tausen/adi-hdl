@@ -537,4 +537,3 @@ module avl_dacfifo_rd #(
   end
 
 endmodule
-

@@ -97,4 +97,3 @@ module util_tdd_sync #(
   end
 
 endmodule
-

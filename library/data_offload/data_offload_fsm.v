@@ -586,4 +586,3 @@ module data_offload_fsm #(
   );
 
 endmodule
-

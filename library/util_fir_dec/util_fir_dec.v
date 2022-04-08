@@ -65,4 +65,3 @@ module util_fir_dec (
   );
 
 endmodule  // util_fir_dec
-

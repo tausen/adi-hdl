@@ -80,4 +80,3 @@ module ad_edge_detect #(
   end
 
 endmodule
-

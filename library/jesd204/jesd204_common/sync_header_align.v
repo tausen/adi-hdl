@@ -133,5 +133,3 @@ assign o_block_sync = state[BIT_SH_LOCK];
 assign i_slip = state[BIT_SH_SLIP];
 
 endmodule
-
-

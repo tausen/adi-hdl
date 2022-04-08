@@ -76,4 +76,3 @@ module axi_dacfifo_address_buffer #(
     .doutb (dout));
 
 endmodule
-

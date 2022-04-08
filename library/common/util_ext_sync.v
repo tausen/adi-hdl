@@ -62,4 +62,3 @@ module util_ext_sync #(
   end
 
 endmodule
-

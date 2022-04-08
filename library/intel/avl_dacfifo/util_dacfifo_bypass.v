@@ -273,4 +273,3 @@ module util_dacfifo_bypass #(
   end
 
 endmodule
-

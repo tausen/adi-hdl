@@ -56,4 +56,3 @@ module ad_b2g #(
   assign dout = b2g(din);
 
 endmodule
-

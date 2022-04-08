@@ -162,4 +162,3 @@ module axi_ad9684_channel #(
     .up_rack (up_rack));
 
 endmodule
-

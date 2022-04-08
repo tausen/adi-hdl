@@ -723,4 +723,3 @@ module axi_adrv9001_core #(
   assign tdd_sync_cntr = tdd_sync_cntr1 | tdd_sync_cntr2;
 
 endmodule
-

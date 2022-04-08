@@ -77,4 +77,3 @@ module util_fir_int (
   );
 
 endmodule  // util_fir_int
-

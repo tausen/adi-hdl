@@ -120,4 +120,3 @@ endgenerate
 assign data_out = mux_in[NUM_STAGES*DW+:CH_W];
 
 endmodule
-

@@ -103,4 +103,3 @@ module ad_pngen #(
   assign pn_data_out = pn_state[PN_W-1 -: DW];
 
 endmodule
-

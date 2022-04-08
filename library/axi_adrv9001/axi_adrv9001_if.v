@@ -492,4 +492,3 @@ module axi_adrv9001_if #(
   endgenerate
 
 endmodule
-

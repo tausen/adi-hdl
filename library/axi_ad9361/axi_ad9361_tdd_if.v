@@ -106,4 +106,3 @@ module axi_ad9361_tdd_if#(
   assign ad9361_enable = ad9361_enable_s;
 
 endmodule
-
