@@ -32,8 +32,8 @@ module ad_pngen #(
   parameter POL_W = 7,
 
   // Number of output bits at every clock cycle
-  parameter DW = 16
-) (
+  parameter DW = 16) (
+
   input           clk,
   input           reset,
   input           clk_en,
@@ -44,9 +44,7 @@ module ad_pngen #(
 
   // Input stream to synchronize to (Optional)
   input           pn_init,
-  input  [DW-1:0] pn_data_in
-
-);
+  input  [DW-1:0] pn_data_in);
 
   /* We need at least enough bits to store the PN state */
   localparam PN_W = DW > POL_W ? DW : POL_W;
@@ -59,7 +57,6 @@ module ad_pngen #(
   wire [PN_W-1:0] pn_state_;
   wire [PN_W-1:0] pn_init_data;
 
-
   // pn init data selection
   generate if (PN_W > DW) begin
     reg [PN_W-DW-1:0] pn_data_in_d = 'd0;
@@ -71,7 +68,6 @@ module ad_pngen #(
     assign pn_init_data = pn_data_in;
   end
   endgenerate
-
 
   // PRBS logic
   assign pn_state_ = pn_init ? pn_init_data : pn_state;
@@ -103,4 +99,3 @@ module ad_pngen #(
   assign pn_data_out = pn_state[PN_W-1 -: DW];
 
 endmodule
-

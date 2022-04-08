@@ -63,7 +63,6 @@ module util_var_fifo #(
 
   localparam      MAX_DEPTH = (2 ** ADDRESS_WIDTH) - 1;
 
-
   // internal registers
 
   reg [ADDRESS_WIDTH-1:0]    addra = 'd0;
@@ -168,6 +167,3 @@ module util_var_fifo #(
   end
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

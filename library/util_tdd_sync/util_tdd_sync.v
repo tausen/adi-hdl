@@ -52,7 +52,6 @@ module util_tdd_sync #(
   input                   sync_in,
   output  reg             sync_out);
 
-
   reg           sync_mode_d1 = 1'b0;
   reg           sync_mode_d2 = 1'b0;
 
@@ -63,15 +62,13 @@ module util_tdd_sync #(
 
   util_pulse_gen #(
     .PULSE_PERIOD(TDD_SYNC_PERIOD)
-  )
-    i_tdd_sync (
+  ) i_tdd_sync (
     .clk (clk),
     .rstn (rstn),
     .pulse_width (32'd0),
     .pulse_period (32'd0),
     .load_config (1'd0),
-    .pulse (sync_internal)
-  );
+    .pulse (sync_internal));
 
   // synchronization logic
 
@@ -97,4 +94,3 @@ module util_tdd_sync #(
   end
 
 endmodule
-

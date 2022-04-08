@@ -42,7 +42,7 @@ module avl_dacfifo_wr #(
   parameter     AVL_BURST_LENGTH = 128,
   parameter     AVL_DDR_BASE_ADDRESS = 0,
   parameter     AVL_DDR_ADDRESS_LIMIT = 33554432,
-  parameter     DMA_MEM_ADDRESS_WIDTH = 10)(
+  parameter     DMA_MEM_ADDRESS_WIDTH = 10) (
 
   input                                 dma_clk,
   input       [DMA_DATA_WIDTH-1:0]      dma_data,
@@ -211,7 +211,7 @@ module avl_dacfifo_wr #(
     end
   end
 
-  ad_b2g # (
+  ad_b2g #(
     .DATA_WIDTH(DMA_MEM_ADDRESS_WIDTH)
   ) i_dma_mem_waddr_b2g (
     .din (dma_mem_waddr),
@@ -367,8 +367,8 @@ module avl_dacfifo_wr #(
     end
   end
 
-  ad_g2b # (
-    .DATA_WIDTH(DMA_MEM_ADDRESS_WIDTH)
+  ad_g2b #(
+    .DATA_WIDTH (DMA_MEM_ADDRESS_WIDTH)
   ) i_avl_mem_waddr_g2b (
     .din (avl_mem_waddr_m2),
     .dout (avl_mem_waddr_m2_g2b_s));

@@ -67,7 +67,7 @@ module axi_adc_trigger_reg (
 
   output              streaming,
 
- // bus interface
+  // bus interface
 
   input               up_rstn,
   input               up_clk,
@@ -239,7 +239,9 @@ module axi_adc_trigger_reg (
     end
   end
 
-   up_xfer_cntrl #(.DATA_WIDTH(262)) i_xfer_cntrl (
+  up_xfer_cntrl #(
+    .DATA_WIDTH(262)
+  ) i_xfer_cntrl (
     .up_rstn (up_rstn),
     .up_clk (up_clk),
     .up_data_cntrl ({ up_streaming,             // 1
@@ -259,7 +261,6 @@ module axi_adc_trigger_reg (
                       up_trigger_holdoff,       // 32
                       up_trigger_out_hold_pins, // 20
                       up_trigger_delay}),       // 32
-
     .up_xfer_done (),
     .d_rst (1'b0),
     .d_clk (clk),
@@ -282,7 +283,3 @@ module axi_adc_trigger_reg (
                       trigger_delay}));      // 32
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************
-

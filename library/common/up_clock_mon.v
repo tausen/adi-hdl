@@ -36,8 +36,7 @@
 `timescale 1ns/100ps
 
 module up_clock_mon #(
-  parameter TOTAL_WIDTH = 32
-) (
+  parameter TOTAL_WIDTH = 32) (
 
   // processor interface
 
@@ -141,6 +140,3 @@ module up_clock_mon #(
   end
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

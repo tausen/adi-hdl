@@ -58,7 +58,6 @@ module axi_gpreg_io #(
   output  reg [31:0]      up_rdata,
   output  reg             up_rack);
 
-
   // internal registers
 
   // internal signals
@@ -111,6 +110,3 @@ module axi_gpreg_io #(
   end
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

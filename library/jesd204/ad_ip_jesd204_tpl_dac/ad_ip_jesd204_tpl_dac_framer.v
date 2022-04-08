@@ -31,16 +31,15 @@ module ad_ip_jesd204_tpl_dac_framer #(
   parameter SAMPLES_PER_FRAME = 2,
   parameter OCTETS_PER_BEAT = 4,
   parameter LINK_DATA_WIDTH = OCTETS_PER_BEAT * 8 * NUM_LANES,
-  parameter DAC_DATA_WIDTH = LINK_DATA_WIDTH * CONVERTER_RESOLUTION / BITS_PER_SAMPLE
-) (
+  parameter DAC_DATA_WIDTH = LINK_DATA_WIDTH * CONVERTER_RESOLUTION / BITS_PER_SAMPLE) (
+
   // jesd interface
 
   output [LINK_DATA_WIDTH-1:0] link_data,
 
   // dac interface
 
-  input [DAC_DATA_WIDTH-1:0] dac_data
-);
+  input [DAC_DATA_WIDTH-1:0] dac_data);
 
   /*
    * The framer module takes sample data and maps it onto the format that the
@@ -123,8 +122,7 @@ module ad_ip_jesd204_tpl_dac_framer #(
       .WORD_WIDTH (BITS_PER_CHANNEL_PER_FRAME)
     ) i_channels_to_frames (
       .data_in (dac_data_msb),
-      .data_out (frame_data_s)
-    );
+      .data_out (frame_data_s));
 
     /* Slice frame and pack it into lanes */
     ad_perfect_shuffle #(
@@ -133,8 +131,7 @@ module ad_ip_jesd204_tpl_dac_framer #(
       .WORD_WIDTH (BITS_PER_LANE_PER_FRAME)
     ) i_frames_to_lanes (
       .data_in (frame_data_s),
-      .data_out (link_data_msb_s)
-    );
+      .data_out (link_data_msb_s));
 
     /* Reorder octets LSB first */
     for (i = 0; i < LINK_DATA_WIDTH; i = i + 8) begin: g_link_data

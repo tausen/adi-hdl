@@ -69,7 +69,6 @@ module util_mfifo #(
   output      [15:0]      dout_data_6,
   output      [15:0]      dout_data_7);
 
-
   // internal registers
 
   reg                                 din_dout_toggle_m1 = 'd0;
@@ -254,8 +253,8 @@ module util_mfifo #(
   for (n = 0; n < NUM_OF_CHANNELS; n = n + 1) begin: g_channels
   ad_mem #(
     .ADDRESS_WIDTH (ADDRESS_WIDTH),
-    .DATA_WIDTH (DIN_DATA_WIDTH))
-  i_mem (
+    .DATA_WIDTH (DIN_DATA_WIDTH)
+  ) i_mem (
     .clka (din_clk),
     .wea (din_wr),
     .addra (din_waddr),
@@ -269,6 +268,3 @@ module util_mfifo #(
   endgenerate
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

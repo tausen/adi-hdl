@@ -36,8 +36,8 @@ module ad_ip_jesd204_tpl_adc_core #(
   parameter LINK_DATA_WIDTH = NUM_LANES * OCTETS_PER_BEAT * 8,
   parameter DMA_DATA_WIDTH = DATA_PATH_WIDTH * DMA_BITS_PER_SAMPLE * NUM_CHANNELS,
   parameter TWOS_COMPLEMENT = 1,
-  parameter EXT_SYNC = 0
-) (
+  parameter EXT_SYNC = 0) (
+
   input clk,
 
   input [NUM_CHANNELS-1:0] dfmt_enable,
@@ -62,8 +62,7 @@ module ad_ip_jesd204_tpl_adc_core #(
   input link_valid,
   output link_ready,
   input [OCTETS_PER_BEAT-1:0] link_sof,
-  input [LINK_DATA_WIDTH-1:0] link_data
-);
+  input [LINK_DATA_WIDTH-1:0] link_data);
   // Raw and formatted channel data widths
   localparam CDW_RAW = CONVERTER_RESOLUTION * DATA_PATH_WIDTH;
   localparam ADC_DATA_WIDTH = CDW_RAW * NUM_CHANNELS;
@@ -94,8 +93,7 @@ module ad_ip_jesd204_tpl_adc_core #(
     .ext_sync_arm (adc_ext_sync_arm),
     .ext_sync_disarm (adc_ext_sync_disarm),
     .sync_in (adc_sync_in | adc_sync_manual_req),
-    .sync_armed (adc_sync_armed)
-  );
+    .sync_armed (adc_sync_armed));
 
   ad_ip_jesd204_tpl_adc_deframer #(
     .NUM_LANES (NUM_LANES),
@@ -111,8 +109,7 @@ module ad_ip_jesd204_tpl_adc_core #(
     .clk (clk),
     .link_sof (link_sof),
     .link_data (link_data),
-    .adc_data (raw_data_s)
-  );
+    .adc_data (raw_data_s));
 
   generate
   genvar i;
@@ -134,8 +131,7 @@ module ad_ip_jesd204_tpl_adc_core #(
 
       .pn_seq_sel (pn_seq_sel[i*4+:4]),
       .pn_err (pn_err[i]),
-      .pn_oos (pn_oos[i])
-    );
+      .pn_oos (pn_oos[i]));
   end
   endgenerate
 

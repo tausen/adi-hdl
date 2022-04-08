@@ -54,8 +54,7 @@ module ad_pnmon #(
   // pn out of sync and error
 
   output                      adc_pn_oos,
-  output                      adc_pn_err
-);
+  output                      adc_pn_err);
 
   localparam CNT_W = $clog2(OOS_THRESHOLD);
 
@@ -91,7 +90,6 @@ module ad_pnmon #(
                           ~adc_pn_oos_int & adc_pn_match_z_s;
   assign adc_pn_err_s = ~(adc_pn_oos_int | adc_pn_match_s | adc_valid_zero_d);
 
-
   // pn oos and counters (16 to clear and set).
 
   assign adc_pn_oos = adc_pn_oos_int;
@@ -116,7 +114,3 @@ module ad_pnmon #(
   end
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************
-

@@ -167,7 +167,9 @@ module axi_dac_interpolate_reg(
     end
   end
 
-   up_xfer_cntrl #(.DATA_WIDTH(128)) i_xfer_cntrl (
+  up_xfer_cntrl #(
+    .DATA_WIDTH(128)
+  ) i_xfer_cntrl (
     .up_rstn (up_rstn),
     .up_clk (up_clk),
     .up_data_cntrl ({ up_config[1],               // 1
@@ -198,7 +200,3 @@ module axi_dac_interpolate_reg(
                       dac_filter_mask_a}));         // 3
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************
-

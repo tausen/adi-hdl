@@ -48,8 +48,7 @@ module ad_iqcor #(
   parameter   SCALE_ONLY = 0,
   parameter   DISABLE = 0,
   parameter   CR = 16,   // Converter Resolution
-  parameter   DPW = 1    // Data Path Width
-) (
+  parameter   DPW = 1) (    // Data Path Width
 
   // data interface
 
@@ -64,8 +63,7 @@ module ad_iqcor #(
 
   input           iqcor_enable,
   input   [15:0]  iqcor_coeff_1,
-  input   [15:0]  iqcor_coeff_2
-);
+  input   [15:0]  iqcor_coeff_2);
 
   // internal registers
 
@@ -75,7 +73,6 @@ module ad_iqcor #(
   // internal signals
   wire [DPW-1:0]    valid_int_loc;
   wire [DPW*CR-1:0] data_int_loc;
-
 
   // data-path disable
 
@@ -88,7 +85,6 @@ module ad_iqcor #(
     assign data_out = data_int_loc;
   end
   endgenerate
-
 
   // coefficients are flopped to remove warnings from vivado
 
@@ -122,7 +118,9 @@ module ad_iqcor #(
 
       // scaling functions - i
 
-      ad_mul #(.DELAY_DATA_WIDTH(CR+1)) i_mul_i (
+      ad_mul #(
+        .DELAY_DATA_WIDTH(CR+1)
+      ) i_mul_i (
         .clk (clk),
         .data_a ({data_i_s[CR-1], data_i_s, {16-CR{1'b0}}}),
         .data_b ({iqcor_coeff_1_r[15], iqcor_coeff_1_r}),
@@ -133,7 +131,9 @@ module ad_iqcor #(
       if (SCALE_ONLY == 0) begin
         // scaling functions - q
 
-        ad_mul #(.DELAY_DATA_WIDTH(CR)) i_mul_q (
+        ad_mul #(
+          .DELAY_DATA_WIDTH(CR)
+        ) i_mul_q (
           .clk (clk),
           .data_a ({data_q_s[CR-1], data_q_s, {16-CR{1'b0}}}),
           .data_b ({iqcor_coeff_2_r[15], iqcor_coeff_2_r}),
@@ -146,7 +146,6 @@ module ad_iqcor #(
         assign p1_data_p_q_s = 34'h0;
         assign p1_data_q_s = {CR{1'b0}};
       end
-
 
       if (Q_OR_I_N == 1 && SCALE_ONLY == 0) begin
         reg [CR-1:0]  p1_data_q = 'd0;
@@ -195,6 +194,3 @@ module ad_iqcor #(
   endgenerate
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

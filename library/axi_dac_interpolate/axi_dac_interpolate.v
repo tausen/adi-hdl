@@ -89,7 +89,6 @@ module axi_dac_interpolate #(
   output      [ 1:0]    s_axi_rresp,
   input                 s_axi_rready);
 
-
   reg    [ 1:0]    trigger_i_m1;
   reg    [ 1:0]    trigger_i_m2;
   reg    [ 1:0]    trigger_i_m3;
@@ -187,23 +186,23 @@ module axi_dac_interpolate #(
 
   // sync
   always @(posedge dac_clk) begin
-   trigger_i_m1 <= trigger_i;
-   trigger_i_m2 <= trigger_i_m1;
-   trigger_i_m3 <= trigger_i_m2;
+    trigger_i_m1 <= trigger_i;
+    trigger_i_m2 <= trigger_i_m1;
+    trigger_i_m3 <= trigger_i_m2;
 
-   trigger_adc_m1 <= trigger_adc;
-   trigger_adc_m2 <= trigger_adc_m1;
+    trigger_adc_m1 <= trigger_adc;
+    trigger_adc_m2 <= trigger_adc_m1;
 
-   trigger_la_m1 <= trigger_la;
-   trigger_la_m2 <= trigger_la_m1;
+    trigger_la_m1 <= trigger_la;
+    trigger_la_m2 <= trigger_la_m1;
   end
 
   always @(posedge dac_clk) begin
-   any_edge_trigger <= (trigger_i_m3 ^ trigger_i_m2) & any_edge;
-   rise_edge_trigger <= (~trigger_i_m3 & trigger_i_m2) & rise_edge;
-   fall_edge_trigger <= (trigger_i_m3 & ~trigger_i_m2) & fall_edge;
-   high_level_trigger <= trigger_i_m3 & high_level;
-   low_level_trigger <= ~trigger_i_m3 & low_level;
+    any_edge_trigger <= (trigger_i_m3 ^ trigger_i_m2) & any_edge;
+    rise_edge_trigger <= (~trigger_i_m3 & trigger_i_m2) & rise_edge;
+    fall_edge_trigger <= (trigger_i_m3 & ~trigger_i_m2) & fall_edge;
+    high_level_trigger <= trigger_i_m3 & high_level;
+    low_level_trigger <= ~trigger_i_m3 & low_level;
   end
 
   assign hold_last_sample = lsample_hold_config[0];
@@ -212,8 +211,8 @@ module axi_dac_interpolate #(
   assign underflow = underflow_a | underflow_b;
 
   axi_dac_interpolate_filter #(
-    .CORRECTION_DISABLE(CORRECTION_DISABLE))
-    i_filter_a (
+    .CORRECTION_DISABLE (CORRECTION_DISABLE)
+  ) i_filter_a (
     .dac_clk (dac_clk),
     .dac_rst (dac_rst),
 
@@ -238,12 +237,11 @@ module axi_dac_interpolate #(
     .dma_valid (dma_valid_a),
     .dma_valid_adjacent (dma_valid_b),
     .dac_correction_enable(dac_correction_enable_a),
-    .dac_correction_coefficient(dac_correction_coefficient_a)
-  );
+    .dac_correction_coefficient(dac_correction_coefficient_a));
 
   axi_dac_interpolate_filter #(
-    .CORRECTION_DISABLE(CORRECTION_DISABLE))
-    i_filter_b (
+    .CORRECTION_DISABLE(CORRECTION_DISABLE)
+  ) i_filter_b (
     .dac_clk (dac_clk),
     .dac_rst (dac_rst),
 
@@ -268,8 +266,7 @@ module axi_dac_interpolate #(
     .dma_valid (dma_valid_b),
     .dma_valid_adjacent (dma_valid_a),
     .dac_correction_enable(dac_correction_enable_b),
-    .dac_correction_coefficient(dac_correction_coefficient_b)
-  );
+    .dac_correction_coefficient(dac_correction_coefficient_b));
 
   axi_dac_interpolate_reg axi_dac_interpolate_reg_inst (
 
@@ -332,6 +329,3 @@ module axi_dac_interpolate #(
     .up_rack (up_rack));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

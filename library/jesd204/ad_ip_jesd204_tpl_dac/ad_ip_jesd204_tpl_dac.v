@@ -43,8 +43,8 @@ module ad_ip_jesd204_tpl_dac #(
   parameter DATAPATH_DISABLE = 0,
   parameter IQCORRECTION_DISABLE = 1,
   parameter EXT_SYNC = 0,
-  parameter XBAR_ENABLE = 0
-) (
+  parameter XBAR_ENABLE = 0) (
+
   // jesd interface
   // link_clk is (line-rate/40)
 
@@ -95,8 +95,7 @@ module ad_ip_jesd204_tpl_dac #(
   output s_axi_rvalid,
   input s_axi_rready,
   output [31:0] s_axi_rdata,
-  output [1:0] s_axi_rresp
-);
+  output [1:0] s_axi_rresp);
 
   localparam DATA_PATH_WIDTH = OCTETS_PER_BEAT * 8 * NUM_LANES / NUM_CHANNELS / BITS_PER_SAMPLE;
   localparam LINK_DATA_WIDTH = NUM_LANES * OCTETS_PER_BEAT * 8;
@@ -202,8 +201,7 @@ module ad_ip_jesd204_tpl_dac #(
     .jesd_f (BYTES_PER_FRAME),
     .jesd_n (CONVERTER_RESOLUTION),
     .jesd_np (BITS_PER_SAMPLE),
-    .up_profile_sel ()
-  );
+    .up_profile_sel ());
 
   // core
 
@@ -259,9 +257,7 @@ module ad_ip_jesd204_tpl_dac #(
     .dac_iqcor_coeff_1 (dac_iqcor_coeff_1),
     .dac_iqcor_coeff_2 (dac_iqcor_coeff_2),
 
-    .dac_src_chan_sel (dac_src_chan_sel)
-
-  );
+    .dac_src_chan_sel (dac_src_chan_sel);
 
   // Drop DMA padding bits from the LSB or MSB based on configuration
   integer i;

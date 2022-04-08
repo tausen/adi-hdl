@@ -91,7 +91,6 @@ module ad_tdd_control#(
 
   output      [23:0]      tdd_counter_status);
 
-
   localparam  [ 0:0]      ON = 1;
   localparam  [ 0:0]      OFF = 0;
 
@@ -509,8 +508,7 @@ module ad_tdd_control#(
     .A(tdd_vco_rx_on_1),
     .Amax(tdd_frame_length),
     .out(tdd_vco_rx_on_1_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   ad_addsub #(
     .A_DATA_WIDTH(24),
@@ -521,8 +519,7 @@ module ad_tdd_control#(
     .A(tdd_vco_rx_off_1),
     .Amax(tdd_frame_length),
     .out(tdd_vco_rx_off_1_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   ad_addsub #(
     .A_DATA_WIDTH(24),
@@ -533,8 +530,7 @@ module ad_tdd_control#(
     .A(tdd_vco_tx_on_1),
     .Amax(tdd_frame_length),
     .out(tdd_vco_tx_on_1_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   ad_addsub #(
     .A_DATA_WIDTH(24),
@@ -545,8 +541,7 @@ module ad_tdd_control#(
     .A(tdd_vco_tx_off_1),
     .Amax(tdd_frame_length),
     .out(tdd_vco_tx_off_1_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   ad_addsub #(
     .A_DATA_WIDTH(24),
@@ -557,8 +552,7 @@ module ad_tdd_control#(
     .A(tdd_rx_on_1),
     .Amax(tdd_frame_length),
     .out(tdd_rx_on_1_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   ad_addsub #(
     .A_DATA_WIDTH(24),
@@ -569,8 +563,7 @@ module ad_tdd_control#(
     .A(tdd_rx_off_1),
     .Amax(tdd_frame_length),
     .out(tdd_rx_off_1_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   ad_addsub #(
     .A_DATA_WIDTH(24),
@@ -581,8 +574,7 @@ module ad_tdd_control#(
     .A(tdd_tx_on_1),
     .Amax(tdd_frame_length),
     .out(tdd_tx_on_1_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   ad_addsub #(
     .A_DATA_WIDTH(24),
@@ -593,8 +585,7 @@ module ad_tdd_control#(
     .A(tdd_tx_off_1),
     .Amax(tdd_frame_length),
     .out(tdd_tx_off_1_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   ad_addsub #(
     .A_DATA_WIDTH(24),
@@ -605,8 +596,7 @@ module ad_tdd_control#(
     .A(tdd_vco_rx_on_2),
     .Amax(tdd_frame_length),
     .out(tdd_vco_rx_on_2_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   ad_addsub #(
     .A_DATA_WIDTH(24),
@@ -617,8 +607,7 @@ module ad_tdd_control#(
     .A(tdd_vco_rx_off_2),
     .Amax(tdd_frame_length),
     .out(tdd_vco_rx_off_2_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   ad_addsub #(
     .A_DATA_WIDTH(24),
@@ -629,8 +618,7 @@ module ad_tdd_control#(
     .A(tdd_vco_tx_on_2),
     .Amax(tdd_frame_length),
     .out(tdd_vco_tx_on_2_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   ad_addsub #(
     .A_DATA_WIDTH(24),
@@ -641,8 +629,7 @@ module ad_tdd_control#(
     .A(tdd_vco_tx_off_2),
     .Amax(tdd_frame_length),
     .out(tdd_vco_tx_off_2_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   ad_addsub #(
     .A_DATA_WIDTH(24),
@@ -653,8 +640,7 @@ module ad_tdd_control#(
     .A(tdd_rx_on_2),
     .Amax(tdd_frame_length),
     .out(tdd_rx_on_2_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   ad_addsub #(
     .A_DATA_WIDTH(24),
@@ -665,8 +651,7 @@ module ad_tdd_control#(
     .A(tdd_rx_off_2),
     .Amax(tdd_frame_length),
     .out(tdd_rx_off_2_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   ad_addsub #(
     .A_DATA_WIDTH(24),
@@ -677,8 +662,7 @@ module ad_tdd_control#(
     .A(tdd_tx_on_2),
     .Amax(tdd_frame_length),
     .out(tdd_tx_on_2_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   ad_addsub #(
     .A_DATA_WIDTH(24),
@@ -689,8 +673,7 @@ module ad_tdd_control#(
     .A(tdd_tx_off_2),
     .Amax(tdd_frame_length),
     .out(tdd_tx_off_2_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   // internal data-path delay compensation
 
@@ -703,8 +686,7 @@ module ad_tdd_control#(
     .A(tdd_tx_dp_on_1),
     .Amax(tdd_frame_length),
     .out(tdd_tx_dp_on_1_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   ad_addsub #(
     .A_DATA_WIDTH(24),
@@ -715,8 +697,7 @@ module ad_tdd_control#(
     .A(tdd_tx_dp_on_2),
     .Amax(tdd_frame_length),
     .out(tdd_tx_dp_on_2_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   ad_addsub #(
     .A_DATA_WIDTH(24),
@@ -727,8 +708,7 @@ module ad_tdd_control#(
     .A(tdd_tx_dp_off_1),
     .Amax(tdd_frame_length),
     .out(tdd_tx_dp_off_1_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   ad_addsub #(
     .A_DATA_WIDTH(24),
@@ -739,8 +719,7 @@ module ad_tdd_control#(
     .A(tdd_tx_dp_off_2),
     .Amax(tdd_frame_length),
     .out(tdd_tx_dp_off_2_s),
-    .CE(1'b1)
-  );
+    .CE(1'b1));
 
   // output logic
 
@@ -831,4 +810,3 @@ module ad_tdd_control#(
   end
 
 endmodule
-

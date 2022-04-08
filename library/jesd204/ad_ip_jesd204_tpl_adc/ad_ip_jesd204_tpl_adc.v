@@ -38,8 +38,8 @@ module ad_ip_jesd204_tpl_adc #(
   parameter OCTETS_PER_BEAT = 4,
   parameter EN_FRAME_ALIGN = 1,
   parameter TWOS_COMPLEMENT = 1,
-  parameter EXT_SYNC = 0
-) (
+  parameter EXT_SYNC = 0) (
+
   // jesd interface
   // link_clk is (line-rate/40)
   input link_clk,
@@ -90,8 +90,7 @@ module ad_ip_jesd204_tpl_adc #(
   output s_axi_rvalid,
   input s_axi_rready,
   output [1:0] s_axi_rresp,
-  output [31:0] s_axi_rdata
-);
+  output [31:0] s_axi_rdata);
 
   // Number of samples per channel that are processed in parallel.
   localparam DATA_PATH_WIDTH = OCTETS_PER_BEAT * 8 * NUM_LANES / NUM_CHANNELS / BITS_PER_SAMPLE;
@@ -177,8 +176,7 @@ module ad_ip_jesd204_tpl_adc #(
     .jesd_f (BYTES_PER_FRAME),
     .jesd_n (CONVERTER_RESOLUTION),
     .jesd_np (BITS_PER_SAMPLE),
-    .up_profile_sel ()
-  );
+    .up_profile_sel ());
 
   ad_ip_jesd204_tpl_adc_core #(
     .NUM_LANES (NUM_LANES),
@@ -218,9 +216,7 @@ module ad_ip_jesd204_tpl_adc #(
     .adc_sync_manual_req (adc_sync_manual_req_in),
     .adc_rst_sync (adc_rst_sync_s),
 
-
     .adc_valid (adc_valid),
-    .adc_data (adc_data)
-  );
+    .adc_data (adc_data));
 
 endmodule

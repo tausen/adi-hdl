@@ -37,8 +37,7 @@
 
 module ad_xcvr_rx_if #(
   parameter OCTETS_PER_BEAT = 4,
-  parameter DW = OCTETS_PER_BEAT * 8
-)(
+  parameter DW = OCTETS_PER_BEAT * 8) (
 
   // jesd interface
 
@@ -97,6 +96,3 @@ module ad_xcvr_rx_if #(
   end
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

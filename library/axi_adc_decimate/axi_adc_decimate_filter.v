@@ -35,7 +35,6 @@
 
 `timescale 1ns/100ps
 
-
 module axi_adc_decimate_filter #(
 
   parameter CORRECTION_DISABLE = 1) (
@@ -59,8 +58,7 @@ module axi_adc_decimate_filter #(
   output      [15:0]    adc_dec_data_a,
   output      [15:0]    adc_dec_data_b,
   output                adc_dec_valid_a,
-  output                adc_dec_valid_b
-);
+  output                adc_dec_valid_b);
 
   // internal signals
 
@@ -122,7 +120,8 @@ module axi_adc_decimate_filter #(
     .filter_out(adc_fir_data_b),
     .ce_out(adc_fir_valid_b));
 
-  ad_iqcor #(.Q_OR_I_N (0),
+  ad_iqcor #(
+    .Q_OR_I_N (0),
     .DISABLE(CORRECTION_DISABLE),
     .SCALE_ONLY(1)
   ) i_scale_correction_a (
@@ -136,7 +135,8 @@ module axi_adc_decimate_filter #(
     .iqcor_coeff_1 (adc_correction_coefficient_a),
     .iqcor_coeff_2 (16'h0));
 
-  ad_iqcor #(.Q_OR_I_N (0),
+  ad_iqcor #(
+    .Q_OR_I_N (0),
     .DISABLE(CORRECTION_DISABLE),
     .SCALE_ONLY(1)
   ) i_scale_correction_b (
@@ -172,7 +172,7 @@ module axi_adc_decimate_filter #(
       default: adc_dec_valid_a_filter = adc_fir_valid_a;
     endcase
 
-     case (filter_enable[0])
+    case (filter_enable[0])
       1'b0: adc_dec_data_b_r = {{4{adc_data_b[11]}},adc_data_b};
       default adc_dec_data_b_r = {adc_fir_data_b[25], adc_fir_data_b[25:11]};
     endcase

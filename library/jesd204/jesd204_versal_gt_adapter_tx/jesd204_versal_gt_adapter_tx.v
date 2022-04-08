@@ -52,8 +52,7 @@ module  jesd204_versal_gt_adapter_tx (
   input      [63:0] tx_data,
   input       [1:0] tx_header,
 
-  input             usr_clk
-);
+  input             usr_clk);
 
   wire [63:0] tx_data_flip;
   genvar i;

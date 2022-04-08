@@ -45,8 +45,7 @@ module up_dac_channel #(
   parameter   DDS_DISABLE = 0,
   parameter   USERPORTS_DISABLE = 0,
   parameter   IQCORRECTION_DISABLE = 0,
-  parameter   XBAR_ENABLE = 0
-) (
+  parameter   XBAR_ENABLE = 0) (
 
   // dac interface
 
@@ -402,7 +401,9 @@ module up_dac_channel #(
 
   // dac control & status
 
-  up_xfer_cntrl #(.DATA_WIDTH(177)) i_xfer_cntrl (
+  up_xfer_cntrl #(
+    .DATA_WIDTH(177)
+  ) i_xfer_cntrl (
     .up_rstn (up_rstn),
     .up_clk (up_clk),
     .up_data_cntrl ({ up_dac_iq_mode,
@@ -440,6 +441,3 @@ module up_dac_channel #(
                       dac_src_chan_sel}));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

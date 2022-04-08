@@ -128,7 +128,9 @@ module axi_ad9963_tx_channel #(
   assign dac_iqcor_valid_s = data_source_valid;
   assign dac_iqcor_data_s = {dac_data_out, 4'd0};
   end else begin
-  ad_iqcor #(.Q_OR_I_N (Q_OR_I_N)) i_ad_iqcor (
+  ad_iqcor #(
+    .Q_OR_I_N (Q_OR_I_N)
+  ) i_ad_iqcor (
     .clk (dac_clk),
     .valid (data_source_valid),
     .data_in ({dac_data_out, 4'd0}),
@@ -156,7 +158,7 @@ module axi_ad9963_tx_channel #(
     dma_valid_m <= dma_valid;
   end
 
- function [23:0] pn23;
+  function [23:0] pn23;
     input [23:0] din;
     reg   [23:0] dout;
     begin
@@ -205,8 +207,8 @@ module axi_ad9963_tx_channel #(
     .DDS_TYPE (DAC_DDS_TYPE),
     .CORDIC_DW (DAC_DDS_CORDIC_DW),
     .CORDIC_PHASE_DW (DAC_DDS_CORDIC_PHASE_DW),
-    .CLK_RATIO (1))
-  i_dds (
+    .CLK_RATIO (1)
+  ) i_dds (
     .clk (dac_clk),
     .dac_dds_format (dac_dds_format),
     .dac_data_sync (dac_data_sync),
@@ -269,6 +271,3 @@ module axi_ad9963_tx_channel #(
     .up_rack (up_rack));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

@@ -25,14 +25,13 @@
 
 module ad_ip_jesd204_tpl_dac_pn #(
   parameter DATA_PATH_WIDTH = 4,
-  parameter CONVERTER_RESOLUTION = 16
-) (
+  parameter CONVERTER_RESOLUTION = 16) (
+
   input clk,
   input reset,
 
   output [DATA_PATH_WIDTH*CONVERTER_RESOLUTION-1:0] pn7_data,
-  output [DATA_PATH_WIDTH*CONVERTER_RESOLUTION-1:0] pn15_data
-);
+  output [DATA_PATH_WIDTH*CONVERTER_RESOLUTION-1:0] pn15_data);
 
   localparam CR = CONVERTER_RESOLUTION;
   localparam DW = DATA_PATH_WIDTH * CR - 1;

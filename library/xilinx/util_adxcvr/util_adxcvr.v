@@ -1433,8 +1433,8 @@ module util_adxcvr #(
     .QPLL_CP_G3 (QPLL_CP_G3),
     .QPLL_LPF (QPLL_LPF),
     .QPLL_CP (QPLL_CP),
-    .QPLL_CFG4 (QPLL_CFG4))
-  i_xcm_0 (
+    .QPLL_CFG4 (QPLL_CFG4)
+  ) i_xcm_0 (
     .qpll_ref_clk (qpll_ref_clk_0),
     .qpll_sel (qpll_sel_0),
     .qpll2ch_clk (qpll2ch_clk_0),
@@ -1512,8 +1512,8 @@ module util_adxcvr #(
     .PREIQ_FREQ_BST (PREIQ_FREQ_BST),
     .RXPI_CFG0 (RXPI_CFG0),
     .RXPI_CFG1 (RXPI_CFG1),
-    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL))
-  i_xch_0 (
+    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL)
+  ) i_xch_0 (
     .qpll2ch_clk (qpll2ch_clk_0),
     .qpll2ch_ref_clk (qpll2ch_ref_clk_0),
     .qpll2ch_locked (qpll2ch_locked_0),
@@ -1615,7 +1615,6 @@ module util_adxcvr #(
   end
   endgenerate
 
-
   generate
   if (NUM_OF_LANES >= 2) begin
   util_adxcvr_xch #(
@@ -1664,8 +1663,8 @@ module util_adxcvr #(
     .PREIQ_FREQ_BST (PREIQ_FREQ_BST),
     .RXPI_CFG0 (RXPI_CFG0),
     .RXPI_CFG1 (RXPI_CFG1),
-    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL))
-  i_xch_1 (
+    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL)
+  ) i_xch_1 (
     .qpll2ch_clk (qpll2ch_clk_0),
     .qpll2ch_ref_clk (qpll2ch_ref_clk_0),
     .qpll2ch_locked (qpll2ch_locked_0),
@@ -1767,7 +1766,6 @@ module util_adxcvr #(
   end
   endgenerate
 
-
   generate
   if (NUM_OF_LANES >= 3) begin
   util_adxcvr_xch #(
@@ -1816,8 +1814,8 @@ module util_adxcvr #(
     .PREIQ_FREQ_BST (PREIQ_FREQ_BST),
     .RXPI_CFG0 (RXPI_CFG0),
     .RXPI_CFG1 (RXPI_CFG1),
-    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL))
-  i_xch_2 (
+    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL)
+  ) i_xch_2 (
     .qpll2ch_clk (qpll2ch_clk_0),
     .qpll2ch_ref_clk (qpll2ch_ref_clk_0),
     .qpll2ch_locked (qpll2ch_locked_0),
@@ -1919,7 +1917,6 @@ module util_adxcvr #(
   end
   endgenerate
 
-
   generate
   if (NUM_OF_LANES >= 4) begin
   util_adxcvr_xch #(
@@ -1968,8 +1965,8 @@ module util_adxcvr #(
     .PREIQ_FREQ_BST (PREIQ_FREQ_BST),
     .RXPI_CFG0 (RXPI_CFG0),
     .RXPI_CFG1 (RXPI_CFG1),
-    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL))
-  i_xch_3 (
+    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL)
+  ) i_xch_3 (
     .qpll2ch_clk (qpll2ch_clk_0),
     .qpll2ch_ref_clk (qpll2ch_ref_clk_0),
     .qpll2ch_locked (qpll2ch_locked_0),
@@ -2091,8 +2088,8 @@ module util_adxcvr #(
     .QPLL_CP_G3 (QPLL_CP_G3),
     .QPLL_LPF (QPLL_LPF),
     .QPLL_CP (QPLL_CP),
-    .QPLL_CFG4 (QPLL_CFG4))
-  i_xcm_4 (
+    .QPLL_CFG4 (QPLL_CFG4)
+  ) i_xcm_4 (
     .qpll_ref_clk (qpll_ref_clk_4),
     .qpll_sel (qpll_sel_4),
     .qpll2ch_clk (qpll2ch_clk_4),
@@ -2170,8 +2167,8 @@ module util_adxcvr #(
     .PREIQ_FREQ_BST (PREIQ_FREQ_BST),
     .RXPI_CFG0 (RXPI_CFG0),
     .RXPI_CFG1 (RXPI_CFG1),
-    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL))
-  i_xch_4 (
+    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL)
+  ) i_xch_4 (
     .qpll2ch_clk (qpll2ch_clk_4),
     .qpll2ch_ref_clk (qpll2ch_ref_clk_4),
     .qpll2ch_locked (qpll2ch_locked_4),
@@ -2273,7 +2270,6 @@ module util_adxcvr #(
   end
   endgenerate
 
-
   generate
   if (NUM_OF_LANES >= 6) begin
   util_adxcvr_xch #(
@@ -2322,8 +2318,8 @@ module util_adxcvr #(
     .PREIQ_FREQ_BST (PREIQ_FREQ_BST),
     .RXPI_CFG0 (RXPI_CFG0),
     .RXPI_CFG1 (RXPI_CFG1),
-    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL))
-  i_xch_5 (
+    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL)
+  ) i_xch_5 (
     .qpll2ch_clk (qpll2ch_clk_4),
     .qpll2ch_ref_clk (qpll2ch_ref_clk_4),
     .qpll2ch_locked (qpll2ch_locked_4),
@@ -2425,7 +2421,6 @@ module util_adxcvr #(
   end
   endgenerate
 
-
   generate
   if (NUM_OF_LANES >= 7) begin
   util_adxcvr_xch #(
@@ -2474,8 +2469,8 @@ module util_adxcvr #(
     .PREIQ_FREQ_BST (PREIQ_FREQ_BST),
     .RXPI_CFG0 (RXPI_CFG0),
     .RXPI_CFG1 (RXPI_CFG1),
-    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL))
-  i_xch_6 (
+    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL)
+  ) i_xch_6 (
     .qpll2ch_clk (qpll2ch_clk_4),
     .qpll2ch_ref_clk (qpll2ch_ref_clk_4),
     .qpll2ch_locked (qpll2ch_locked_4),
@@ -2577,7 +2572,6 @@ module util_adxcvr #(
   end
   endgenerate
 
-
   generate
   if (NUM_OF_LANES >= 8) begin
   util_adxcvr_xch #(
@@ -2626,8 +2620,8 @@ module util_adxcvr #(
     .PREIQ_FREQ_BST (PREIQ_FREQ_BST),
     .RXPI_CFG0 (RXPI_CFG0),
     .RXPI_CFG1 (RXPI_CFG1),
-    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL))
-  i_xch_7 (
+    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL)
+  ) i_xch_7 (
     .qpll2ch_clk (qpll2ch_clk_4),
     .qpll2ch_ref_clk (qpll2ch_ref_clk_4),
     .qpll2ch_locked (qpll2ch_locked_4),
@@ -2749,8 +2743,8 @@ module util_adxcvr #(
     .QPLL_CP_G3 (QPLL_CP_G3),
     .QPLL_LPF (QPLL_LPF),
     .QPLL_CP (QPLL_CP),
-    .QPLL_CFG4 (QPLL_CFG4))
-  i_xcm_8 (
+    .QPLL_CFG4 (QPLL_CFG4)
+  ) i_xcm_8 (
     .qpll_ref_clk (qpll_ref_clk_8),
     .qpll_sel (qpll_sel_8),
     .qpll2ch_clk (qpll2ch_clk_8),
@@ -2828,8 +2822,8 @@ module util_adxcvr #(
     .PREIQ_FREQ_BST (PREIQ_FREQ_BST),
     .RXPI_CFG0 (RXPI_CFG0),
     .RXPI_CFG1 (RXPI_CFG1),
-    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL))
-  i_xch_8 (
+    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL)
+  ) i_xch_8 (
     .qpll2ch_clk (qpll2ch_clk_8),
     .qpll2ch_ref_clk (qpll2ch_ref_clk_8),
     .qpll2ch_locked (qpll2ch_locked_8),
@@ -2931,7 +2925,6 @@ module util_adxcvr #(
   end
   endgenerate
 
-
   generate
   if (NUM_OF_LANES >= 10) begin
   util_adxcvr_xch #(
@@ -2980,8 +2973,8 @@ module util_adxcvr #(
     .PREIQ_FREQ_BST (PREIQ_FREQ_BST),
     .RXPI_CFG0 (RXPI_CFG0),
     .RXPI_CFG1 (RXPI_CFG1),
-    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL))
-  i_xch_9 (
+    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL)
+  ) i_xch_9 (
     .qpll2ch_clk (qpll2ch_clk_8),
     .qpll2ch_ref_clk (qpll2ch_ref_clk_8),
     .qpll2ch_locked (qpll2ch_locked_8),
@@ -3083,7 +3076,6 @@ module util_adxcvr #(
   end
   endgenerate
 
-
   generate
   if (NUM_OF_LANES >= 11) begin
   util_adxcvr_xch #(
@@ -3132,8 +3124,8 @@ module util_adxcvr #(
     .PREIQ_FREQ_BST (PREIQ_FREQ_BST),
     .RXPI_CFG0 (RXPI_CFG0),
     .RXPI_CFG1 (RXPI_CFG1),
-    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL))
-  i_xch_10 (
+    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL)
+  ) i_xch_10 (
     .qpll2ch_clk (qpll2ch_clk_8),
     .qpll2ch_ref_clk (qpll2ch_ref_clk_8),
     .qpll2ch_locked (qpll2ch_locked_8),
@@ -3235,7 +3227,6 @@ module util_adxcvr #(
   end
   endgenerate
 
-
   generate
   if (NUM_OF_LANES >= 12) begin
   util_adxcvr_xch #(
@@ -3284,8 +3275,8 @@ module util_adxcvr #(
     .PREIQ_FREQ_BST (PREIQ_FREQ_BST),
     .RXPI_CFG0 (RXPI_CFG0),
     .RXPI_CFG1 (RXPI_CFG1),
-    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL))
-  i_xch_11 (
+    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL)
+  ) i_xch_11 (
     .qpll2ch_clk (qpll2ch_clk_8),
     .qpll2ch_ref_clk (qpll2ch_ref_clk_8),
     .qpll2ch_locked (qpll2ch_locked_8),
@@ -3407,8 +3398,8 @@ module util_adxcvr #(
     .QPLL_CP_G3 (QPLL_CP_G3),
     .QPLL_LPF (QPLL_LPF),
     .QPLL_CP (QPLL_CP),
-    .QPLL_CFG4 (QPLL_CFG4))
-  i_xcm_12 (
+    .QPLL_CFG4 (QPLL_CFG4)
+  ) i_xcm_12 (
     .qpll_ref_clk (qpll_ref_clk_12),
     .qpll_sel (qpll_sel_12),
     .qpll2ch_clk (qpll2ch_clk_12),
@@ -3486,8 +3477,8 @@ module util_adxcvr #(
     .PREIQ_FREQ_BST (PREIQ_FREQ_BST),
     .RXPI_CFG0 (RXPI_CFG0),
     .RXPI_CFG1 (RXPI_CFG1),
-    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL))
-  i_xch_12 (
+    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL)
+  ) i_xch_12 (
     .qpll2ch_clk (qpll2ch_clk_12),
     .qpll2ch_ref_clk (qpll2ch_ref_clk_12),
     .qpll2ch_locked (qpll2ch_locked_12),
@@ -3589,7 +3580,6 @@ module util_adxcvr #(
   end
   endgenerate
 
-
   generate
   if (NUM_OF_LANES >= 14) begin
   util_adxcvr_xch #(
@@ -3638,8 +3628,8 @@ module util_adxcvr #(
     .PREIQ_FREQ_BST (PREIQ_FREQ_BST),
     .RXPI_CFG0 (RXPI_CFG0),
     .RXPI_CFG1 (RXPI_CFG1),
-    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL))
-  i_xch_13 (
+    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL)
+  ) i_xch_13 (
     .qpll2ch_clk (qpll2ch_clk_12),
     .qpll2ch_ref_clk (qpll2ch_ref_clk_12),
     .qpll2ch_locked (qpll2ch_locked_12),
@@ -3741,7 +3731,6 @@ module util_adxcvr #(
   end
   endgenerate
 
-
   generate
   if (NUM_OF_LANES >= 15) begin
   util_adxcvr_xch #(
@@ -3790,8 +3779,8 @@ module util_adxcvr #(
     .PREIQ_FREQ_BST (PREIQ_FREQ_BST),
     .RXPI_CFG0 (RXPI_CFG0),
     .RXPI_CFG1 (RXPI_CFG1),
-    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL))
-  i_xch_14 (
+    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL)
+  ) i_xch_14 (
     .qpll2ch_clk (qpll2ch_clk_12),
     .qpll2ch_ref_clk (qpll2ch_ref_clk_12),
     .qpll2ch_locked (qpll2ch_locked_12),
@@ -3893,7 +3882,6 @@ module util_adxcvr #(
   end
   endgenerate
 
-
   generate
   if (NUM_OF_LANES >= 16) begin
   util_adxcvr_xch #(
@@ -3942,8 +3930,8 @@ module util_adxcvr #(
     .PREIQ_FREQ_BST (PREIQ_FREQ_BST),
     .RXPI_CFG0 (RXPI_CFG0),
     .RXPI_CFG1 (RXPI_CFG1),
-    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL))
-  i_xch_15 (
+    .RTX_BUF_CML_CTRL (RTX_BUF_CML_CTRL)
+  ) i_xch_15 (
     .qpll2ch_clk (qpll2ch_clk_12),
     .qpll2ch_ref_clk (qpll2ch_ref_clk_12),
     .qpll2ch_locked (qpll2ch_locked_12),
@@ -4046,7 +4034,3 @@ module util_adxcvr #(
   endgenerate
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************
-

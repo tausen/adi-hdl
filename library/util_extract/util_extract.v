@@ -48,8 +48,7 @@ module util_extract #(
 
   output      [DATA_WIDTH-1:0]  data_out,
   output reg                    valid_out,
-  output reg                    trigger_out
-);
+  output reg                    trigger_out);
 
   // loop variables
 
@@ -79,6 +78,3 @@ module util_extract #(
   end
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

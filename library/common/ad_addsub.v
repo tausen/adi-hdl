@@ -50,7 +50,6 @@ module ad_addsub #(
   output  reg [(A_DATA_WIDTH-1):0]  out,
   input                   CE);
 
-
   localparam  ADDER = 1;
   localparam  SUBSTRACTER = 0;
 

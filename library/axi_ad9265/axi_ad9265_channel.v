@@ -70,7 +70,6 @@ module axi_ad9265_channel #(
   output      [31:0]      up_rdata,
   output                  up_rack);
 
-
   // internal signals
 
   wire    [15:0]  adc_dfmt_data_s;
@@ -97,7 +96,9 @@ module axi_ad9265_channel #(
   if (DATAPATH_DISABLE == 1) begin
   assign adc_dfmt_data_s = adc_data;
   end else begin
-  ad_datafmt #(.DATA_WIDTH(16)) i_ad_datafmt (
+  ad_datafmt #(
+    .DATA_WIDTH(16)
+  ) i_ad_datafmt (
     .clk (adc_clk),
     .valid (1'b1),
     .data (adc_data),
@@ -131,8 +132,8 @@ module axi_ad9265_channel #(
     .USERPORTS_DISABLE (0),
     .DATAFORMAT_DISABLE (0),
     .DCFILTER_DISABLE (0),
-    .IQCORRECTION_DISABLE (0))
-  i_up_adc_channel (
+    .IQCORRECTION_DISABLE (0)
+  ) i_up_adc_channel (
     .adc_clk (adc_clk),
     .adc_rst (adc_rst),
     .adc_enable (adc_enable),
@@ -179,6 +180,3 @@ module axi_ad9265_channel #(
     .up_rack (up_rack));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

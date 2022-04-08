@@ -46,7 +46,6 @@ module mdc_mdio #(
   output  reg [ 1:0]      speed_select,
   output  reg             duplex_mode);
 
-
   localparam IDLE     = 2'b01;
   localparam ACQUIRE  = 2'b10;
 

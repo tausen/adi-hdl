@@ -38,8 +38,8 @@
 module util_cpack2_impl #(
   parameter NUM_OF_CHANNELS = 4,
   parameter SAMPLES_PER_CHANNEL = 1,
-  parameter SAMPLE_DATA_WIDTH = 16
-) (
+  parameter SAMPLE_DATA_WIDTH = 16) (
+
   input clk,
   input reset,
 
@@ -52,24 +52,18 @@ module util_cpack2_impl #(
   output reg packed_fifo_wr_en = 1'b0,
   input packed_fifo_wr_overflow,
   output reg packed_fifo_wr_sync = 1'b1,
-  output reg [NUM_OF_CHANNELS*SAMPLE_DATA_WIDTH*SAMPLES_PER_CHANNEL-1:0] packed_fifo_wr_data = 'h00
-);
+  output reg [NUM_OF_CHANNELS*SAMPLE_DATA_WIDTH*SAMPLES_PER_CHANNEL-1:0] packed_fifo_wr_data = 'h00);
+
   localparam TOTAL_DATA_WIDTH = SAMPLE_DATA_WIDTH * SAMPLES_PER_CHANNEL * NUM_OF_CHANNELS;
 
-  /*
-   * Control signals from the pack shell.
-   */
+  // Control signals from the pack shell.
   wire reset_data;
   wire ready;
 
-  /*
-   * Interleaved version of `fifo_wr_data`.
-   */
+  // Interleaved version of `fifo_wr_data`.
   wire [TOTAL_DATA_WIDTH-1:0] interleaved_data;
 
-  /*
-   * Output data and corresponding control signal from the routing network.
-   */
+  // Output data and corresponding control signal from the routing network.
   wire [TOTAL_DATA_WIDTH-1:0] out_data;
   wire out_sync;
   wire [NUM_OF_CHANNELS*SAMPLES_PER_CHANNEL-1:0] out_valid;
@@ -99,8 +93,7 @@ module util_cpack2_impl #(
     .WORD_WIDTH (SAMPLE_DATA_WIDTH)
   ) i_interleave (
     .data_in (fifo_wr_data),
-    .data_out (interleaved_data)
-  );
+    .data_out (interleaved_data));
 
   pack_shell #(
     .NUM_OF_CHANNELS (NUM_OF_CHANNELS),
@@ -119,8 +112,7 @@ module util_cpack2_impl #(
     .in_data (interleaved_data),
     .out_data (out_data),
     .out_sync (out_sync),
-    .out_valid (out_valid)
-  );
+    .out_valid (out_valid));
 
   always @(posedge clk) begin
     if (reset_data == 1'b1) begin
@@ -134,7 +126,6 @@ module util_cpack2_impl #(
       packed_fifo_wr_sync <= 1'b0;
     end
   end
-
 
   always @(posedge clk) begin: gen_packed_fifo_wr_data
     integer i;

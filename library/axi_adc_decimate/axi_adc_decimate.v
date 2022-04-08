@@ -130,7 +130,6 @@ module axi_adc_decimate #(
     .adc_dec_valid_b(adc_dec_valid_b));
 
   axi_adc_decimate_reg axi_adc_decimate_reg (
-
     .clk (adc_clk),
 
     .adc_decimation_ratio (decimation_ratio),
@@ -152,9 +151,9 @@ module axi_adc_decimate #(
     .up_rdata (up_rdata),
     .up_rack (up_rack));
 
- up_axi #(
+  up_axi #(
     .AXI_ADDRESS_WIDTH(7)
- ) i_up_axi (
+  ) i_up_axi (
     .up_rstn (up_rstn),
     .up_clk (up_clk),
     .up_axi_awvalid (s_axi_awvalid),
@@ -184,6 +183,3 @@ module axi_adc_decimate #(
     .up_rack (up_rack));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

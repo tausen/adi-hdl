@@ -226,8 +226,7 @@ module axi_clock_monitor #(
         .up_clk(up_clk),
         .up_d_count(clk_mon_count[n]),
         .d_rst(1'b0),
-        .d_clk(clock[n])
-      );
+        .d_clk(clock[n]));
     end
     for (n = NUM_OF_CLOCKS; n < 16; n = n + 1) begin: clk_mon_z
       assign clk_mon_count[n] = 21'd0;
@@ -266,6 +265,3 @@ module axi_clock_monitor #(
     .up_rack (up_rack_o_s));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

@@ -91,7 +91,6 @@ module axi_logic_analyzer_trigger (
     end
   end
 
-
   // trigger logic:
   // 0 OR
   // 1 AND
@@ -185,6 +184,3 @@ module axi_logic_analyzer_trigger (
   end
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

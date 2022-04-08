@@ -70,7 +70,6 @@ module axi_ad9265_if #(
   input                   delay_rst,
   output                  delay_locked);
 
-
   // internal registers
 
   reg     [ 7:0]  adc_data_p = 'd0;
@@ -102,8 +101,8 @@ module axi_ad9265_if #(
     .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
     .IODELAY_CTRL (0),
     .IODELAY_GROUP (IO_DELAY_GROUP),
-    .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY))
-  i_adc_data (
+    .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY)
+  ) i_adc_data (
     .rx_clk (adc_clk),
     .rx_data_in_p (adc_data_in_p[l_inst]),
     .rx_data_in_n (adc_data_in_n[l_inst]),
@@ -125,8 +124,8 @@ module axi_ad9265_if #(
     .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
     .IODELAY_CTRL (1),
     .IODELAY_GROUP (IO_DELAY_GROUP),
-    .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY))
-  i_adc_or (
+    .REFCLK_FREQUENCY (DELAY_REFCLK_FREQUENCY)
+  ) i_adc_or (
     .rx_clk (adc_clk),
     .rx_data_in_p (adc_or_in_p),
     .rx_data_in_n (adc_or_in_n),
@@ -142,8 +141,7 @@ module axi_ad9265_if #(
 
   // clock
 
-  ad_data_clk
-  i_adc_clk (
+  ad_data_clk i_adc_clk (
     .rst (1'b0),
     .locked (),
     .clk_in_p (adc_clk_in_p),
@@ -151,6 +149,3 @@ module axi_ad9265_if #(
     .clk (adc_clk));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

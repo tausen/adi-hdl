@@ -56,4 +56,3 @@ module ad_g2b #(
   assign dout = g2b(din);
 
 endmodule
-

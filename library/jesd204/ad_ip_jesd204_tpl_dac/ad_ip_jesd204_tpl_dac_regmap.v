@@ -36,8 +36,8 @@ module ad_ip_jesd204_tpl_dac_regmap #(
   parameter DATA_PATH_WIDTH = 16,
   parameter PADDING_TO_MSB_LSB_N = 0,
   parameter NUM_PROFILES = 1,    // Number of supported JESD profiles
-  parameter EXT_SYNC = 0
-) (
+  parameter EXT_SYNC = 0) (
+
   input s_axi_aclk,
   input s_axi_aresetn,
 
@@ -104,15 +104,13 @@ module ad_ip_jesd204_tpl_dac_regmap #(
   input [NUM_PROFILES*8-1: 0] jesd_n,
   input [NUM_PROFILES*8-1: 0] jesd_np,
 
-  output [$clog2(NUM_PROFILES):0] up_profile_sel
-);
+  output [$clog2(NUM_PROFILES):0] up_profile_sel);
 
   // internal registers
   reg up_wack = 1'b0;
   reg up_rack = 1'b0;
   reg [31:0] up_rdata = 32'h00;
   reg [31:0] up_rdata_all;
-
 
   wire up_wreq_s;
   wire [10:0] up_waddr_s;
@@ -167,8 +165,7 @@ module ad_ip_jesd204_tpl_dac_regmap #(
     .up_rreq (up_rreq_s),
     .up_raddr (up_raddr_s),
     .up_rdata (up_rdata),
-    .up_rack (up_rack)
-  );
+    .up_rack (up_rack));
 
   integer n;
 
@@ -176,7 +173,7 @@ module ad_ip_jesd204_tpl_dac_regmap #(
     up_rdata_all = 'h00;
     for (n = 0; n < NUM_CHANNELS + 2; n = n + 1) begin
       up_rdata_all = up_rdata_all | up_rdata_s[n];
-     end
+    end
   end
 
   always @(posedge up_clk) begin
@@ -192,7 +189,7 @@ module ad_ip_jesd204_tpl_dac_regmap #(
   end
 
   // dac common processor interface
-  //
+
   localparam CONFIG = (EXT_SYNC << 12) |
                       (PADDING_TO_MSB_LSB_N << 11) |
                       (XBAR_ENABLE << 10) |
@@ -255,8 +252,7 @@ module ad_ip_jesd204_tpl_dac_regmap #(
     .up_rreq (up_rreq_s),
     .up_raddr ({3'b0,up_raddr_s}),
     .up_rdata (up_rdata_s[0]),
-    .up_rack (up_rack_s[0])
-  );
+    .up_rack (up_rack_s[0]));
 
   generate
   genvar i;
@@ -310,16 +306,14 @@ module ad_ip_jesd204_tpl_dac_regmap #(
       .up_rreq (up_rreq_s),
       .up_raddr ({3'b0,up_raddr_s}),
       .up_rdata (up_rdata_s[i+1]),
-      .up_rack (up_rack_s[i+1])
-    );
+      .up_rack (up_rack_s[i+1]));
   end
   endgenerate
 
   up_tpl_common #(
-     .COMMON_ID(2'h0),            // Offset of regmap
-     .NUM_PROFILES(NUM_PROFILES)  // Number of JESD profiles
-    ) i_up_tpl_dac (
-
+    .COMMON_ID(2'h0),            // Offset of regmap
+    .NUM_PROFILES(NUM_PROFILES)  // Number of JESD profiles
+  ) i_up_tpl_dac (
     .jesd_m (jesd_m),
     .jesd_l (jesd_l),
     .jesd_s (jesd_s),
@@ -340,7 +334,6 @@ module ad_ip_jesd204_tpl_dac_regmap #(
     .up_rreq (up_rreq_s),
     .up_raddr (up_raddr_s),
     .up_rdata (up_rdata_s[NUM_CHANNELS+1]),
-    .up_rack (up_rack_s[NUM_CHANNELS+1])
-  );
+    .up_rack (up_rack_s[NUM_CHANNELS+1]));
 
 endmodule

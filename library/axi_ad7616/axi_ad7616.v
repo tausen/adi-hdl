@@ -90,7 +90,6 @@ module axi_ad7616 #(
 
   output                  irq);
 
-
   localparam      NUM_OF_SDI = 2;
   localparam      SERIAL = 0;
   localparam      PARALLEL = 1;
@@ -368,8 +367,7 @@ module axi_ad7616 #(
       .fifo_wr_en(adc_valid),
       .fifo_wr_data(adc_data),
       .fifo_wr_sync(adc_sync),
-      .fifo_wr_xfer_req(1'b1)
-    );
+      .fifo_wr_xfer_req(1'b1));
 
   end
   endgenerate
@@ -402,8 +400,7 @@ module axi_ad7616 #(
       .wr_req (wr_req_s),
       .wr_data (wr_data_s),
       .rd_data (rd_data_s),
-      .rd_valid (rd_valid_s)
-    );
+      .rd_valid (rd_valid_s));
 
   end
   endgenerate
@@ -466,6 +463,3 @@ module axi_ad7616 #(
     .up_rack (up_rack));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

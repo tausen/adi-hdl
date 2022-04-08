@@ -57,7 +57,6 @@ module axi_gpreg_clock_mon #(
   output  reg [31:0]      up_rdata,
   output  reg             up_rack);
 
-
   // internal registers
 
   reg             up_d_preset = 'd0;
@@ -138,6 +137,3 @@ module axi_gpreg_clock_mon #(
   endgenerate
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************
