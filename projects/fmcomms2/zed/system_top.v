@@ -131,7 +131,9 @@ module system_top (
 
   // instantiations
 
-  ad_iobuf #(.DATA_WIDTH(49)) i_iobuf_gpio (
+  ad_iobuf #(
+    .DATA_WIDTH(49)
+  ) i_iobuf_gpio (
     .dio_t ({gpio_t[50:49], gpio_t[46:0]}),
     .dio_i ({gpio_o[50:49], gpio_o[46:0]}),
     .dio_o ({gpio_i[50:49], gpio_i[46:0]}),
@@ -147,13 +149,17 @@ module system_top (
   assign gpio_i[63:51] = gpio_o[63:51];
   assign gpio_i[48:47] = gpio_o[48:47];
 
-   ad_iobuf #(.DATA_WIDTH(2)) i_iobuf_iic_scl (
+  ad_iobuf #(
+    .DATA_WIDTH(2)
+  ) i_iobuf_iic_scl (
     .dio_t ({iic_mux_scl_t_s,iic_mux_scl_t_s}),
     .dio_i (iic_mux_scl_o_s),
     .dio_o (iic_mux_scl_i_s),
     .dio_p (iic_mux_scl));
 
-   ad_iobuf #(.DATA_WIDTH(2)) i_iobuf_iic_sda (
+  ad_iobuf #(
+    .DATA_WIDTH(2)
+  ) i_iobuf_iic_sda (
     .dio_t ({iic_mux_sda_t_s,iic_mux_sda_t_s}),
     .dio_i (iic_mux_sda_o_s),
     .dio_o (iic_mux_sda_i_s),
@@ -243,6 +249,3 @@ module system_top (
     .up_txnrx (gpio_o[48]));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

@@ -121,7 +121,7 @@ module system_top (
   assign gpio_i[47:44] = gpio_o[47:44];
   assign gpio_i[63:53] = gpio_o[63:53];
 
-ad7768_if i_ad7768_if (
+  ad7768_if i_ad7768_if (
     .clk_in (clk_in),
     .ready_in (ready_in),
     .data_in (data_in),
@@ -211,6 +211,3 @@ ad7768_if i_ad7768_if (
     .spi1_sdo_o ());
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

@@ -117,8 +117,7 @@ module system_top (
   output              led_br_c_c2m,
   output              led_br_a_c2m,
   output              led_bl_c_c2m,
-  output              led_bl_a_c2m
-);
+  output              led_bl_a_c2m);
 
   // internal signals
 
@@ -164,7 +163,9 @@ module system_top (
 
   assign gpio_i[33:15] = gpio_o[33:15];
 
-  ad_iobuf #(.DATA_WIDTH(15)) i_iobuf_bd (
+  ad_iobuf #(
+    .DATA_WIDTH(15)
+  ) i_iobuf_bd (
     .dio_t (gpio_t[14:0]),
     .dio_i (gpio_o[14:0]),
     .dio_o (gpio_i[14:0]),
@@ -250,10 +251,6 @@ module system_top (
     .GMII_ETHERNET_1_0_tx_er(),
     .GMII_ETHERNET_1_0_txd({mii_txd_extra_b,mii_txd_b}),
     .MDIO_ETHERNET_1_0_mdc(mdc_fmc_b),
-    .MDIO_ETHERNET_1_0_mdio_io(mdio_fmc_b)
-    );
+    .MDIO_ETHERNET_1_0_mdio_io(mdio_fmc_b));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

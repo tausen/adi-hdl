@@ -88,4 +88,3 @@ module ad9265_spi (
   assign spi_miso = spi_sdio;
 
 endmodule
-

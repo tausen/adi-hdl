@@ -186,8 +186,7 @@ module system_top (
   output            tx2_strobe_out_p,
 
   input             vadj_err,
-  output            platform_status
-);
+  output            platform_status);
 
   // internal signals
 
@@ -365,10 +364,6 @@ module system_top (
                            dgpio_3,
                            dgpio_2,
                            dgpio_1,
-                           dgpio_0})
-  );
+                           dgpio_0}));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

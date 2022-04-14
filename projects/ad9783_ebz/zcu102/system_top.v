@@ -70,7 +70,6 @@ module system_top (
   
   assign spi_en = spi_csb[0];
 
-
   // instantiations
 
   system_wrapper i_system_wrapper (
@@ -93,6 +92,3 @@ module system_top (
     .data_p (data_p));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

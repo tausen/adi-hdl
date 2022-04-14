@@ -115,8 +115,7 @@ module system_top (
   output              led_br_c_c2m,
   output              led_br_a_c2m,
   output              led_bl_c_c2m,
-  output              led_bl_a_c2m
-);
+  output              led_bl_a_c2m);
 
   // internal signals
 
@@ -163,7 +162,9 @@ module system_top (
 
   // instantiations
 
-  ad_iobuf #(.DATA_WIDTH(15)) i_iobuf_bd (
+  ad_iobuf #(
+    .DATA_WIDTH(15)
+  ) i_iobuf_bd (
     .dio_t (gpio_t[14:0]),
     .dio_i (gpio_o[14:0]),
     .dio_o (gpio_i[14:0]),
@@ -237,10 +238,6 @@ module system_top (
     .RMII_PHY_M_1_rx_er (rmii_rx_er_b),
     .RMII_PHY_M_1_rxd (rmii_rxd_b),
     .RMII_PHY_M_1_tx_en (rmii_tx_en_b),
-    .RMII_PHY_M_1_txd (rmii_txd_b)
-    );
+    .RMII_PHY_M_1_txd (rmii_txd_b));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

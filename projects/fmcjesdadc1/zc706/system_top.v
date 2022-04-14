@@ -114,7 +114,9 @@ module system_top (
     .O (rx_ref_clk),
     .ODIV2 ());
 
-  ad_iobuf #(.DATA_WIDTH(15)) i_iobuf (
+  ad_iobuf #(
+    .DATA_WIDTH(15)
+  ) i_iobuf (
     .dio_t (gpio_t[14:0]),
     .dio_i (gpio_o[14:0]),
     .dio_o (gpio_i[14:0]),
@@ -133,7 +135,9 @@ module system_top (
     .spi_miso (spi_miso),
     .spi_sdio (spi_sdio));
 
-  ad_sysref_gen #(.SYSREF_PERIOD(64)) i_sysref (
+  ad_sysref_gen #(
+    .SYSREF_PERIOD(64)
+  ) i_sysref (
     .core_clk (rx_clk),
     .sysref_en (gpio_o[32]),
     .sysref_out (rx_sysref));
@@ -203,6 +207,3 @@ module system_top (
     .spi1_sdo_o (spi1_mosi));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

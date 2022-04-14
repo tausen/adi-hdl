@@ -147,9 +147,7 @@ module system_top (
   output            spi_csn_adrv9009,
   output            spi_clk,
   output            spi_mosi,
-  input             spi_miso
-
-);
+  input             spi_miso);
 
   // internal signals
 
@@ -198,9 +196,9 @@ module system_top (
 
   system_bd i_system_bd (
     .sys_clk_clk                          ( sys_clk ),
-    .sys_rst_reset_n                     ( sys_resetn_s ),
-	  .h2f_reset_reset                      ( h2f_reset_s ),
-	  .rst_ninit_done_ninit_done            ( ninit_done_s ),
+    .sys_rst_reset_n                      ( sys_resetn_s ),
+    .h2f_reset_reset                      ( h2f_reset_s ),
+    .rst_ninit_done_ninit_done            ( ninit_done_s ),
     .sys_gpio_bd_in_port                  ( gpio_i[31: 0] ),
     .sys_gpio_bd_out_port                 ( gpio_o[31: 0] ),
     .sys_gpio_in_export                   ( gpio_i[63:32] ),
@@ -288,10 +286,6 @@ module system_top (
     .rx_os_sysref_export                  ( sysref ),
     .rx_ref_clk_clk                       ( ref_clk1 ),
     .rx_sync_export                       ( rx_sync ),
-    .rx_sysref_export                     ( sysref )
-  );
+    .rx_sysref_export                     ( sysref ));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

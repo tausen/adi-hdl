@@ -295,7 +295,9 @@ module system_top (
     .IB (sysref_n),
     .O (sysref));
 
-  ad_iobuf #(.DATA_WIDTH(28)) i_iobuf (
+  ad_iobuf #(
+    .DATA_WIDTH(28)
+  ) i_iobuf (
     .dio_t ({gpio_t[59:32]}),
     .dio_i ({gpio_o[59:32]}),
     .dio_o ({gpio_i[59:32]}),
@@ -328,7 +330,9 @@ module system_top (
               adrv9009_gpio_16,     // 33
               adrv9009_gpio_18}));  // 32
 
-  ad_iobuf #(.DATA_WIDTH(15)) i_iobuf_bd (
+  ad_iobuf #(
+    .DATA_WIDTH(15)
+  ) i_iobuf_bd (
     .dio_t (gpio_t[14:0]),
     .dio_i (gpio_o[14:0]),
     .dio_o (gpio_i[14:0]),
@@ -434,6 +438,3 @@ module system_top (
     .ref_clk (ref_clk1_bufg));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

@@ -152,10 +152,6 @@ module system_top (
     .pulsar_adc_spi_sdi(pulsar_adc_spi_sdi),
     .pulsar_adc_spi_sdo(pulsar_adc_spi_sdo),
     .pulsar_adc_spi_sdo_t(),
-    .pulsar_adc_spi_three_wire()
-  );
+    .pulsar_adc_spi_three_wire());
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

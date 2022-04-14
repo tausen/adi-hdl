@@ -196,7 +196,9 @@ module system_top (
 
   assign gpio_i[39] = trig;
 
-  ad_iobuf #(.DATA_WIDTH(7)) i_iobuf (
+  ad_iobuf #(
+    .DATA_WIDTH(7)
+  ) i_iobuf (
     .dio_t (gpio_t[38:32]),
     .dio_i (gpio_o[38:32]),
     .dio_o (gpio_i[38:32]),
@@ -207,7 +209,9 @@ module system_top (
               dac_irq,          // 34
               clkd_status}));   // 33-32
 
-  ad_iobuf #(.DATA_WIDTH(17)) i_iobuf_bd (
+  ad_iobuf #(
+    .DATA_WIDTH(17)
+  ) i_iobuf_bd (
     .dio_t (gpio_t[16:0]),
     .dio_i (gpio_o[16:0]),
     .dio_o (gpio_i[16:0]),
@@ -285,6 +289,3 @@ module system_top (
     .uart_sout (uart_sout));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

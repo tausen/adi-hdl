@@ -80,8 +80,7 @@ module system_top (
   output          led_br_c_c2m,
   output          led_br_a_c2m,
   output          led_bl_c_c2m,
-  output          led_bl_a_c2m
-);
+  output          led_bl_a_c2m);
 
   // internal signals
 
@@ -174,10 +173,6 @@ module system_top (
     .GMII_ENET1_0_txd({mii_txd_extra_b,mii_txd_b}),
     .GMII_ENET1_0_speed_mode(speed_mode_b_s),
     .MDIO_ENET1_0_mdc(mdc_fmc_b),
-    .MDIO_ENET1_0_mdio_io(mdio_fmc_b)
-  );
+    .MDIO_ENET1_0_mdio_io(mdio_fmc_b));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

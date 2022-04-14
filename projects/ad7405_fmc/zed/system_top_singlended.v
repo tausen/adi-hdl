@@ -76,7 +76,6 @@ module system_top (
   output          i2s_sdata_out,
   input           i2s_sdata_in,
 
-
   inout           iic_scl,
   inout           iic_sda,
   inout   [ 1:0]  iic_mux_scl,
@@ -104,7 +103,6 @@ module system_top (
   // instantiations
 
   assign gpio_i[63:49] = 15'b0;
-
 
   ad_iobuf #(
     .DATA_WIDTH(32)
@@ -215,6 +213,3 @@ module system_top (
     .spdif (spdif));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

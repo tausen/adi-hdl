@@ -152,7 +152,9 @@ module system_top (
     .IB (sysref_n),
     .O (sysref));
 
-  ad_iobuf #(.DATA_WIDTH(28)) i_iobuf (
+  ad_iobuf #(
+    .DATA_WIDTH(28)
+  ) i_iobuf (
     .dio_t ({gpio_t[59:32]}),
     .dio_i ({gpio_o[59:32]}),
     .dio_o ({gpio_i[59:32]}),
@@ -238,6 +240,3 @@ module system_top (
     .ref_clk (ref_clk1_bufg));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

@@ -81,8 +81,7 @@ module system_top (
   output          led_br_c_c2m,
   output          led_br_a_c2m,
   output          led_bl_c_c2m,
-  output          led_bl_a_c2m
-);
+  output          led_bl_a_c2m);
 
   // internal signals
 
@@ -173,10 +172,6 @@ module system_top (
     .RGMII_1_td (rgmii_txd_b),
     .RGMII_1_tx_ctl (rgmii_tx_ctl_b),
     .RGMII_1_txc (rgmii_txc_b),
-    .speed_mode_b (speed_mode_b_s)
-  );
+    .speed_mode_b (speed_mode_b_s));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

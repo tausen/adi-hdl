@@ -154,7 +154,9 @@ module system_top (
   assign gpio_out_clk = out_clk;
   assign pl_gpio_i[31:9] = pl_gpio_o[31:9];
 
-  ad_iobuf #(.DATA_WIDTH(9)) i_iobuf_rf (
+  ad_iobuf #(
+    .DATA_WIDTH(9)
+  ) i_iobuf_rf (
     .dio_t (pl_gpio_t[8:0]),
     .dio_i (pl_gpio_o[8:0]),
     .dio_o (pl_gpio_i[8:0]),
@@ -232,7 +234,9 @@ module system_top (
 
   assign ps_gpio_i[6] = pwr_switch;
 
-  ad_iobuf #(.DATA_WIDTH(6)) i_iobuf_bd (
+  ad_iobuf #(
+    .DATA_WIDTH(6)
+  ) i_iobuf_bd (
     .dio_t (ps_gpio_t[5:0]),
     .dio_i (ps_gpio_o[5:0]),
     .dio_o (ps_gpio_i[5:0]),
@@ -291,6 +295,3 @@ module system_top (
     .up_txnrx (ps_gpio_o[48]));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

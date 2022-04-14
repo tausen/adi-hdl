@@ -78,8 +78,7 @@ module system_top (
   output          led_br_c_c2m,
   output          led_br_a_c2m,
   output          led_bl_c_c2m,
-  output          led_bl_a_c2m
-);
+  output          led_bl_a_c2m);
 
   // internal signals
 
@@ -163,10 +162,6 @@ module system_top (
     .RMII_PHY_M_1_rx_er (rmii_rx_er_b),
     .RMII_PHY_M_1_rxd (rmii_rxd_b),
     .RMII_PHY_M_1_tx_en (rmii_tx_en_b),
-    .RMII_PHY_M_1_txd (rmii_txd_b)
-  );
+    .RMII_PHY_M_1_txd (rmii_txd_b));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

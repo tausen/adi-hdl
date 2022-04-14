@@ -112,7 +112,9 @@ module system_top (
 
   // instantiations
 
-  ad_iobuf #(.DATA_WIDTH(15)) i_iobuf_bd (
+  ad_iobuf #(
+    .DATA_WIDTH(15)
+  ) i_iobuf_bd (
     .dio_t (gpio_t[14:0]),
     .dio_i (gpio_o[14:0]),
     .dio_o (gpio_i[14:0]),
@@ -181,6 +183,3 @@ module system_top (
     .spi1_sdo_o (spi1_mosi));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

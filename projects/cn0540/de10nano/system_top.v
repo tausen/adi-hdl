@@ -114,7 +114,6 @@ module system_top (
   inout             hdmi_i2c_scl,
   inout             hdmi_i2c_sda,
 
-
   // cn0540
 
   inout            i2c_sda,
@@ -138,8 +137,7 @@ module system_top (
   output           ltc2308_cs,
   output           ltc2308_sclk,
   output           ltc2308_mosi,
-  input            ltc2308_miso
-);
+  input            ltc2308_miso);
 
   // internal signals
 
@@ -180,7 +178,6 @@ module system_top (
 
   assign gpio_i[31:14] = gpio_o[31:14];
   assign gpio_i[13:8] = gpio_bd_i[5:0];
-
 
   // IO Buffers for I2C
 
@@ -299,6 +296,3 @@ module system_top (
     .axi_hdmi_tx_0_hdmi_if_h24_data (hdmi_data));
 
 endmodule
-
-// ***************************************************************************
-// ***************************************************************************

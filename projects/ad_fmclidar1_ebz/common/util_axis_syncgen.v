@@ -58,8 +58,8 @@ module util_axis_syncgen #(
 
   sync_bits #(
     .NUM_OF_BITS (1),
-    .ASYNC_CLK (ASYNC_SYNC))
-  i_axis_ext_sync (
+    .ASYNC_CLK (ASYNC_SYNC)
+  ) i_axis_ext_sync (
     .in_bits (ext_sync),
     .out_clk (s_axis_aclk),
     .out_resetn (s_axis_aresetn),
