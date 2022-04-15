@@ -47,6 +47,8 @@ module sync_bits #(
 
   // Number of bits to synchronize
   parameter NUM_OF_BITS = 1,
+  // Default reset value
+  parameter RESET_VALUE = 0,
   // Whether input and output clocks are asynchronous, if 0 the synchronizer will
   // be bypassed and the output signal equals the input signal.
   parameter ASYNC_CLK = 1)(
@@ -57,14 +59,14 @@ module sync_bits #(
   output [NUM_OF_BITS-1:0] out_bits);
 
 generate if (ASYNC_CLK == 1) begin
-  reg [NUM_OF_BITS-1:0] cdc_sync_stage1 = 'h0;
-  reg [NUM_OF_BITS-1:0] cdc_sync_stage2 = 'h0;
+  reg [NUM_OF_BITS-1:0] cdc_sync_stage1 = RESET_VALUE;
+  reg [NUM_OF_BITS-1:0] cdc_sync_stage2 = RESET_VALUE;
 
   always @(posedge out_clk)
   begin
     if (out_resetn == 1'b0) begin
-      cdc_sync_stage1 <= 'b0;
-      cdc_sync_stage2 <= 'b0;
+      cdc_sync_stage1 <= RESET_VALUE;
+      cdc_sync_stage2 <= RESET_VALUE;
     end else begin
       cdc_sync_stage1 <= in_bits;
       cdc_sync_stage2 <= cdc_sync_stage1;
