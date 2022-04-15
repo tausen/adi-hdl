@@ -60,7 +60,7 @@ module axi_tdd_ng_sync_gen #(
 
   // first sync source (external)
   generate
-    if (SYNC_EXTERNAL_CDC == 1) begin
+    if (SYNC_EXTERNAL == 1) begin
       if (SYNC_EXTERNAL_CDC == 1) begin
 
         logic sync_m1 = 1'b0;

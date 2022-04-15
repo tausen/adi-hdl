@@ -94,30 +94,30 @@ module axi_tdd_ng_counter #(
   end
 
   always @* begin
-    tdd_cstate_ns <= tdd_cstate;
+    tdd_cstate_ns = tdd_cstate;
 
     case (tdd_cstate)
       IDLE : begin
         if (tdd_enable == 1'b1) begin
-          tdd_cstate_ns <= ARMED;
+          tdd_cstate_ns = ARMED;
         end
       end
 
       ARMED : begin
         if (tdd_sync == 1'b1) begin
-          tdd_cstate_ns <= WAITING;
+          tdd_cstate_ns = WAITING;
         end
       end
 
       WAITING : begin
         if (tdd_delay_done == 1'b1) begin
-          tdd_cstate_ns <= RUNNING;
+          tdd_cstate_ns = RUNNING;
         end
       end
 
       RUNNING : begin
         if (tdd_endof_frame == 1'b1) begin
-          tdd_cstate_ns <= (tdd_endof_burst == 1'b1) ? ARMED : RUNNING;
+          tdd_cstate_ns = (tdd_endof_burst == 1'b1) ? ARMED : RUNNING;
         end
       end
 
