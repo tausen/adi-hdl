@@ -42,7 +42,7 @@ package axi_tdd_ng_pkg;
 
   localparam
     PCORE_VERSION = 32'h00010061,
-    PCORE_MAGIC   = 32'h54444443; // "TDDC", big endian
+    PCORE_MAGIC   = 32'h5444444E; // "TDDN", big endian
 
   // register address offset
   localparam
@@ -59,6 +59,7 @@ package axi_tdd_ng_pkg;
     ADDR_TDD_FRAME_LENGTH  = 8'h15,
     ADDR_TDD_SYNC_CNT_LOW  = 8'h16,
     ADDR_TDD_SYNC_CNT_HIGH = 8'h17,
+    ADDR_TDD_STATUS        = 8'h18,
     ADDR_TDD_CH_ON         = 8'h20,
     ADDR_TDD_CH_OFF        = 8'h21;
 

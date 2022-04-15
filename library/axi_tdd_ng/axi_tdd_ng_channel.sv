@@ -35,6 +35,7 @@
 `timescale 1ns/1ps
 
 module axi_tdd_ng_channel #(
+  parameter  DEFAULT_POLARITY = 0,
   parameter  REGISTER_WIDTH = 32) (
 
   input  logic                      clk,
@@ -43,7 +44,7 @@ module axi_tdd_ng_channel #(
   input  logic [REGISTER_WIDTH-1:0] tdd_counter,
   input  axi_tdd_ng_pkg::state_t    tdd_cstate,
   input  logic                      tdd_enable,
-  input  logic                      tdd_restart,
+  input  logic                      tdd_endof_frame,
 
   input  logic                      ch_en,
   input  logic                      ch_pol,
@@ -56,14 +57,16 @@ module axi_tdd_ng_channel #(
   import axi_tdd_ng_pkg::*;
 
   // internal registers
+  logic ch_en_q;
   logic ch_set;
   logic ch_rst;
 
   //initial values
   initial begin
-    ch_set = 1'b0;
-    ch_rst = 1'b0;
-    out    = 1'b0;
+    ch_en_q = 1'b0;
+    ch_set  = 1'b0;
+    ch_rst  = 1'b0;
+    out     = 1'b0;
   end
 
   (* direct_enable = "yes" *) logic enable;
@@ -71,45 +74,67 @@ module axi_tdd_ng_channel #(
 
   always @(posedge clk) begin
     if (resetn == 1'b0) begin
-      ch_set <= 1'b0;
-    end else if (enable == 1'b0) begin
-      ch_set <= 1'b0;
+      ch_en_q <= 1'b0;
     end else begin
-      if (tdd_counter == t_high) begin
-        ch_set <= 1'b1;
+      if (enable == 1'b0) begin
+        ch_en_q <= 1'b0;
       end else begin
-        ch_set <= 1'b0;
-      end
-    end
-  end
-
-  always @(posedge clk) begin
-    if (resetn == 1'b0) begin
-      ch_rst <= 1'b0;
-    end else if (enable == 1'b0) begin
-      ch_rst <= 1'b0;
-    end else begin
-      if (tdd_counter == t_low) begin
-        ch_rst <= 1'b1;
-      end else begin
-        ch_rst <= 1'b0;
-      end
-    end
-  end
-
-  always @(posedge clk) begin
-    if (resetn == 1'b0) begin
-      out <= 1'b0;
-    end else if (enable == 1'b0) begin
-      out <= 1'b0;
-    end else begin
-      if ((ch_en == 1'b0) || (tdd_cstate == IDLE) || (ch_rst == 1'b1) || (tdd_restart == 1'b1)) begin
-        out <= ch_pol;
-      end else begin
-        if ((tdd_cstate == RUNNING) && (ch_set == 1'b1)) begin
-          out <= ~ch_pol;
+        if ((tdd_cstate == ARMED) || (tdd_endof_frame == 1'b1)) begin
+          ch_en_q <= ch_en;
         end else begin
-          out <= out;
+          ch_en_q <= ch_en_q;
+        end
+      end
+    end
+  end
+
+  always @(posedge clk) begin
+    if (resetn == 1'b0) begin
+      ch_set <= 1'b0;
+    end else begin
+      if (enable == 1'b0) begin
+        ch_set <= 1'b0;
+      end else begin
+        if ((tdd_cstate == RUNNING) && (tdd_counter == t_high)) begin
+          ch_set <= 1'b1;
+        end else begin
+          ch_set <= 1'b0;
+        end
+      end
+    end
+  end
+
+  always @(posedge clk) begin
+    if (resetn == 1'b0) begin
+      ch_rst <= 1'b0;
+    end else begin
+      if (enable == 1'b0) begin
+        ch_rst <= 1'b0;
+      end else begin
+        if (((tdd_cstate == RUNNING) && (tdd_counter == t_low)) || (tdd_endof_frame == 1'b1)) begin
+          ch_rst <= 1'b1;
+        end else begin
+          ch_rst <= 1'b0;
+        end
+      end
+    end
+  end
+
+  always @(posedge clk) begin
+    if (resetn == 1'b0) begin
+      out <= 1'b0;
+    end else begin
+      if (enable == 1'b0) begin
+        out <= DEFAULT_POLARITY;
+      end else begin
+        if ((ch_en_q == 1'b0) || (ch_rst == 1'b1)) begin
+          out <= ch_pol;
+        end else begin
+          if (ch_set == 1'b1) begin
+            out <= ~ch_pol;
+          end else begin
+            out <= out;
+          end
         end
       end
     end

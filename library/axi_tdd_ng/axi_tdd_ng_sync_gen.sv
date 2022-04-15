@@ -35,8 +35,8 @@
 `timescale 1ns/1ps
 
 module axi_tdd_ng_sync_gen #(
-  parameter  SYNC_EXTERNAL = 0,
   parameter  SYNC_INTERNAL = 1,
+  parameter  SYNC_EXTERNAL = 0,
   parameter  SYNC_EXTERNAL_CDC = 0,
   parameter  SYNC_COUNT_WIDTH = 64) (
 
@@ -73,14 +73,16 @@ module axi_tdd_ng_sync_gen #(
             sync_m1 <= 1'b0;
             sync_m2 <= 1'b0;
             sync_m3 <= 1'b0;
-          end else if (enable == 1'b0) begin
-            sync_m1 <= 1'b0;
-            sync_m2 <= 1'b0;
-            sync_m3 <= 1'b0;
           end else begin
-            sync_m1 <= sync_in;
-            sync_m2 <= sync_m1;
-            sync_m3 <= sync_m2;
+            if (enable == 1'b0) begin
+              sync_m1 <= 1'b0;
+              sync_m2 <= 1'b0;
+              sync_m3 <= 1'b0;
+            end else begin
+              sync_m1 <= sync_in;
+              sync_m2 <= sync_m1;
+              sync_m3 <= sync_m2;
+            end
           end
         end
 
@@ -104,13 +106,15 @@ module axi_tdd_ng_sync_gen #(
       always @(posedge clk) begin
         if (resetn == 1'b0) begin
           sync_trigger <= 1'b0;
-        end else if (enable == 1'b0) begin
-          sync_trigger <= 1'b0;
         end else begin
-          if (sync_counter == (tdd_sync_period - 1'b1)) begin
-            sync_trigger <= 1'b1;
-          end else begin
+          if (enable == 1'b0) begin
             sync_trigger <= 1'b0;
+          end else begin
+            if (sync_counter == (tdd_sync_period - 1'b1)) begin
+              sync_trigger <= 1'b1;
+            end else begin
+              sync_trigger <= 1'b0;
+            end
           end
         end
       end
@@ -119,10 +123,12 @@ module axi_tdd_ng_sync_gen #(
       always @(posedge clk) begin
         if (resetn == 1'b0) begin
           sync_counter <= 'd0;
-        end else if (enable == 1'b0) begin
-          sync_counter <= 'd0;
         end else begin
-          sync_counter <= (sync_trigger == 1'b1) ? 'd0 : sync_counter + 1'b1;
+          if (enable == 1'b0) begin
+            sync_counter <= 'd0;
+          end else begin
+            sync_counter <= (sync_trigger == 1'b1) ? 'd0 : sync_counter + 1'b1;
+          end
         end
       end
 
