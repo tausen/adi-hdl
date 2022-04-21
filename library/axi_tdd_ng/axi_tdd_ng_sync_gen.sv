@@ -74,15 +74,9 @@ module axi_tdd_ng_sync_gen #(
             sync_m2 <= 1'b0;
             sync_m3 <= 1'b0;
           end else begin
-            if (enable == 1'b0) begin
-              sync_m1 <= 1'b0;
-              sync_m2 <= 1'b0;
-              sync_m3 <= 1'b0;
-            end else begin
-              sync_m1 <= sync_in;
-              sync_m2 <= sync_m1;
-              sync_m3 <= sync_m2;
-            end
+            sync_m1 <= sync_in;
+            sync_m2 <= sync_m1;
+            sync_m3 <= sync_m2;
           end
         end
 
@@ -100,20 +94,18 @@ module axi_tdd_ng_sync_gen #(
   generate
     if (SYNC_INTERNAL == 1) begin
 
-      logic                        sync_trigger = 1'b0;
-      logic [SYNC_COUNT_WIDTH-1:0] sync_counter = 'd0;
+      logic                        tdd_sync_trigger = 1'b0;
+      logic [SYNC_COUNT_WIDTH-1:0] tdd_sync_counter = 'd0;
 
       always @(posedge clk) begin
         if (resetn == 1'b0) begin
-          sync_trigger <= 1'b0;
+          tdd_sync_trigger <= 1'b0;
         end else begin
-          if (enable == 1'b0) begin
-            sync_trigger <= 1'b0;
-          end else begin
-            if (sync_counter == (tdd_sync_period - 1'b1)) begin
-              sync_trigger <= 1'b1;
+          if (enable) begin
+            if (tdd_sync_counter == (tdd_sync_period - 1'b1)) begin
+              tdd_sync_trigger <= 1'b1;
             end else begin
-              sync_trigger <= 1'b0;
+              tdd_sync_trigger <= 1'b0;
             end
           end
         end
@@ -122,17 +114,15 @@ module axi_tdd_ng_sync_gen #(
       // sync counter
       always @(posedge clk) begin
         if (resetn == 1'b0) begin
-          sync_counter <= 'd0;
+          tdd_sync_counter <= 'd0;
         end else begin
-          if (enable == 1'b0) begin
-            sync_counter <= 'd0;
-          end else begin
-            sync_counter <= (sync_trigger == 1'b1) ? 'd0 : sync_counter + 1'b1;
+          if (enable) begin
+            tdd_sync_counter <= (tdd_sync_trigger == 1'b1) ? 'd0 : tdd_sync_counter + 1'b1;
           end
         end
       end
 
-      assign sync_source[1] = sync_trigger;
+      assign sync_source[1] = tdd_sync_trigger;
 
     end else begin
       assign sync_source[1] = 1'b0;

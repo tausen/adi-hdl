@@ -388,7 +388,7 @@ module axi_tdd_ng_regmap #(
     .NUM_OF_BITS (2),
     .RESET_VALUE (0),
     .ASYNC_CLK (1)
-  ) i_cstate_sync (
+  ) i_tdd_cstate_sync (
     .in_bits (tdd_cstate),
     .out_resetn (1'b1),
     .out_clk (up_clk),
@@ -398,7 +398,7 @@ module axi_tdd_ng_regmap #(
     .NUM_OF_BITS (4),
     .RESET_VALUE (0),
     .ASYNC_CLK (1)
-  ) i_control_sync (
+  ) i_tdd_control_sync (
     .in_bits ({up_tdd_sync_ext,
                up_tdd_sync_int,
                up_tdd_sync_rst,
@@ -413,7 +413,7 @@ module axi_tdd_ng_regmap #(
   sync_event #(
     .NUM_OF_EVENTS (1),
     .ASYNC_CLK (1)
-  ) i_soft_sync (
+  ) i_tdd_soft_sync (
     .in_clk (up_clk),
     .in_event (up_tdd_sync_soft),
     .out_clk (tdd_clk),
@@ -423,7 +423,7 @@ module axi_tdd_ng_regmap #(
     .NUM_OF_BITS (CHANNEL_COUNT),
     .RESET_VALUE (0),
     .ASYNC_CLK (1)
-  ) i_ch_en_sync (
+  ) i_tdd_ch_en_sync (
     .in_bits (up_tdd_channel_en),
     .out_resetn (tdd_resetn),
     .out_clk (tdd_clk),
@@ -433,7 +433,7 @@ module axi_tdd_ng_regmap #(
     .NUM_OF_BITS (CHANNEL_COUNT),
     .RESET_VALUE (DEFAULT_POLARITY),
     .ASYNC_CLK (1)
-  ) i_ch_pol_sync (
+  ) i_tdd_ch_pol_sync (
     .in_bits (up_tdd_channel_pol),
     .out_resetn (tdd_resetn),
     .out_clk (tdd_clk),

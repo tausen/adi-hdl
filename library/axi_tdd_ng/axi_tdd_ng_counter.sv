@@ -85,16 +85,12 @@ module axi_tdd_ng_counter #(
     if (resetn == 1'b0) begin
       tdd_cstate <= IDLE;
     end else begin
-      if (enable == 1'b0) begin
-        tdd_cstate <= IDLE;
-      end else begin
-        tdd_cstate <= tdd_cstate_ns;
-      end
+      tdd_cstate <= tdd_cstate_ns;
     end
   end
 
   always @* begin
-    tdd_cstate_ns = tdd_cstate;
+    tdd_cstate_ns = tdd_enable ? tdd_cstate : IDLE;
 
     case (tdd_cstate)
       IDLE : begin
@@ -128,9 +124,7 @@ module axi_tdd_ng_counter #(
     if (resetn == 1'b0) begin
       tdd_delay_done <= 1'b0;
     end else begin
-      if (enable == 1'b0) begin
-        tdd_delay_done <= 1'b0;
-      end else begin
+      if (enable) begin
         if (tdd_counter == (tdd_startup_delay - 1'b1)) begin
           tdd_delay_done <= 1'b1;
         end else begin
@@ -144,9 +138,7 @@ module axi_tdd_ng_counter #(
     if (resetn == 1'b0) begin
       tdd_endof_frame <= 1'b0;
     end else begin
-      if (enable == 1'b0) begin
-        tdd_endof_frame <= 1'b0;
-      end else begin
+      if (enable) begin
         if (tdd_counter == (tdd_frame_length - 1'b1)) begin
           tdd_endof_frame <= 1'b1;
         end else begin
@@ -163,9 +155,7 @@ module axi_tdd_ng_counter #(
     if (resetn == 1'b0) begin
       tdd_counter <= 'd0;
     end else begin
-      if (enable == 1'b0) begin
-        tdd_counter <= 'd0;
-      end else begin
+      if (enable) begin
         if ((tdd_sync && tdd_sync_rst) == 1'b1) begin
           tdd_counter <= 'd0;
         end else begin
@@ -188,9 +178,7 @@ module axi_tdd_ng_counter #(
     if (resetn == 1'b0) begin
       tdd_burst_counter <= 'd0;
     end else begin
-      if (enable == 1'b0) begin
-        tdd_burst_counter <= 'd0;
-      end else begin
+      if (enable) begin
         if (tdd_cstate == ARMED) begin
           tdd_burst_counter <= tdd_burst_count;
         end else begin
@@ -206,9 +194,7 @@ module axi_tdd_ng_counter #(
     if (resetn == 1'b0) begin
       tdd_last_burst <= 1'b0;
     end else begin
-      if (enable == 1'b0) begin
-        tdd_last_burst <= 1'b0;
-      end else begin
+      if (enable) begin
         tdd_last_burst <= (tdd_burst_counter == 1) ? 1'b1 : 1'b0;
       end
     end

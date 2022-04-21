@@ -57,16 +57,16 @@ module axi_tdd_ng_channel #(
   import axi_tdd_ng_pkg::*;
 
   // internal registers
-  logic ch_en_q;
-  logic ch_set;
-  logic ch_rst;
+  logic tdd_ch_en;
+  logic tdd_ch_set;
+  logic tdd_ch_rst;
 
   //initial values
   initial begin
-    ch_en_q = 1'b0;
-    ch_set  = 1'b0;
-    ch_rst  = 1'b0;
-    out     = 1'b0;
+    tdd_ch_en  = 1'b0;
+    tdd_ch_set = 1'b0;
+    tdd_ch_rst = 1'b0;
+    out        = 1'b0;
   end
 
   (* direct_enable = "yes" *) logic enable;
@@ -74,15 +74,13 @@ module axi_tdd_ng_channel #(
 
   always @(posedge clk) begin
     if (resetn == 1'b0) begin
-      ch_en_q <= 1'b0;
+      tdd_ch_en <= 1'b0;
     end else begin
-      if (enable == 1'b0) begin
-        ch_en_q <= 1'b0;
-      end else begin
+      if (enable) begin
         if ((tdd_cstate == ARMED) || (tdd_endof_frame == 1'b1)) begin
-          ch_en_q <= ch_en;
+          tdd_ch_en <= ch_en;
         end else begin
-          ch_en_q <= ch_en_q;
+          tdd_ch_en <= tdd_ch_en;
         end
       end
     end
@@ -90,15 +88,13 @@ module axi_tdd_ng_channel #(
 
   always @(posedge clk) begin
     if (resetn == 1'b0) begin
-      ch_set <= 1'b0;
+      tdd_ch_set <= 1'b0;
     end else begin
-      if (enable == 1'b0) begin
-        ch_set <= 1'b0;
-      end else begin
+      if (enable) begin
         if ((tdd_cstate == RUNNING) && (tdd_counter == t_high)) begin
-          ch_set <= 1'b1;
+          tdd_ch_set <= 1'b1;
         end else begin
-          ch_set <= 1'b0;
+          tdd_ch_set <= 1'b0;
         end
       end
     end
@@ -106,15 +102,13 @@ module axi_tdd_ng_channel #(
 
   always @(posedge clk) begin
     if (resetn == 1'b0) begin
-      ch_rst <= 1'b0;
+      tdd_ch_rst <= 1'b0;
     end else begin
-      if (enable == 1'b0) begin
-        ch_rst <= 1'b0;
-      end else begin
+      if (enable) begin
         if (((tdd_cstate == RUNNING) && (tdd_counter == t_low)) || (tdd_endof_frame == 1'b1)) begin
-          ch_rst <= 1'b1;
+          tdd_ch_rst <= 1'b1;
         end else begin
-          ch_rst <= 1'b0;
+          tdd_ch_rst <= 1'b0;
         end
       end
     end
@@ -122,15 +116,13 @@ module axi_tdd_ng_channel #(
 
   always @(posedge clk) begin
     if (resetn == 1'b0) begin
-      out <= 1'b0;
+      out <= DEFAULT_POLARITY;
     end else begin
-      if (enable == 1'b0) begin
-        out <= DEFAULT_POLARITY;
-      end else begin
-        if ((ch_en_q == 1'b0) || (ch_rst == 1'b1)) begin
+      if (enable) begin
+        if ((tdd_ch_en == 1'b0) || (tdd_ch_rst == 1'b1)) begin
           out <= ch_pol;
         end else begin
-          if (ch_set == 1'b1) begin
+          if (tdd_ch_set == 1'b1) begin
             out <= ~ch_pol;
           end else begin
             out <= out;
